@@ -1,3 +1,5 @@
+"""Board representation and utility functions for Battleship."""
+
 import numpy as np
 import random
 from ship import Ship
@@ -144,27 +146,16 @@ class Board:
             board_rep.append(" ".join(row_display))
         return "\n".join(board_rep)
 
-
-
-'''
     def deep_copy(self):
-        """
-        Creates a deep copy of the board, including a new grid, new Ship objects,
-        and a rebuilt ship_positions mapping.
-        """
-        new_board = Board(10)
+        """Return an independent copy of the board and all ships."""
+        new_board = Board(self.size)
         new_board.grid = self.grid.copy()
         new_board.ships = []
+        new_board.ship_lookup = {}
         for ship in self.ships:
             new_ship = Ship(ship.size, list(ship.coordinates), ship.orientation)
             new_ship.hits = set(ship.hits)
             new_board.ships.append(new_ship)
-        new_board.ship_positions = {}
-        for coord, ship in self.ship_head_map.items():
-            # Find the corresponding new_ship (matching coordinates)
-            for new_ship in new_board.ships:
-                if new_ship.coordinates == ship.coordinates:
-                    new_board.ship_positions[coord] = new_ship
-                    break
+            for coord in new_ship.coordinates:
+                new_board.ship_lookup[coord] = new_ship
         return new_board
-'''
