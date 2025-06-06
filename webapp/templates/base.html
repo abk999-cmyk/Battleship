@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Battleship Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{{ url_for('game') }}">Battleship</a>
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('game') }}">Game</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('batch') }}">Batch Simulation</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('analytics_view') }}">Analytics</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('settings') }}">Settings</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container mt-4">
+      {% block content %}{% endblock %}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+.board {
+  display: grid;
+  grid-template-columns: repeat(10, 30px);
+  grid-template-rows: repeat(10, 30px);
+  gap: 2px;
+}
+.cell {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.cell.hit { background: #FF4C4C; color: white; }
+.cell.miss { background: #4C72B0; color: white; }
+.cell.ship { background: #808080; }

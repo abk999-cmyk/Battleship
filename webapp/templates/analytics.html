@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Analytics</h2>
+<pre id="summary"></pre>
+<script>
+const summary = JSON.parse('{{ summary|safe }}');
+const pre = document.getElementById('summary');
+pre.textContent = JSON.stringify(summary, null, 2);
+</script>
+{% endblock %}

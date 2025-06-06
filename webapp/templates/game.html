@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>New Game</h2>
+<form method="post">
+  <div class="row mb-3">
+    <div class="col">
+      <label class="form-label">Player 1</label>
+      <select name="player1" class="form-select">
+        {% for a in agents %}
+        <option value="{{ a }}">{{ a }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col">
+      <label class="form-label">Player 2</label>
+      <select name="player2" class="form-select">
+        {% for a in agents %}
+        <option value="{{ a }}">{{ a }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+  <button class="btn btn-primary">Start Game</button>
+</form>
+{% endblock %}
