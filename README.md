@@ -32,6 +32,11 @@ Launch the dashboard:
 python battleship_dashboard.py
 ```
 
+You can also run the lightweight Flask web interface:
+```bash
+python webapp/app.py
+```
+
 ### Dashboard Tabs
 1. **Game** – play individual games or human vs. AI
 2. **Batch Simulation** – run many games for benchmarking

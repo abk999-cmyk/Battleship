@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Play</h2>
+<div id="board" class="board"></div>
+<div class="mt-3">
+  <button class="btn btn-secondary" onclick="aiMove()">AI Move</button>
+</div>
+<script>
+const board = {{ board|tojson }};
+function render(){
+  const el = document.getElementById('board');
+  el.innerHTML = '';
+  board.forEach((row,r)=>{
+    row.forEach((cell,c)=>{
+      const div = document.createElement('div');
+      div.className='cell';
+      if(cell==1) div.classList.add('miss');
+      if(cell==2) div.classList.add('hit');
+      div.onclick=()=>shoot(r,c);
+      el.appendChild(div);
+    });
+  });
+}
+function shoot(r,c){
+  fetch('/move',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({row:r,col:c})})
+  .then(r=>r.json()).then(data=>{Object.assign(board,data.board);render();if(data.game_over)alert('Winner: '+data.winner);});
+}
+function aiMove(){
+  fetch('/ai_move').then(r=>r.json()).then(data=>{if(data.board){Object.assign(board,data.board);}render();if(data.game_over)alert('Winner: '+data.winner);});
+}
+render();
+</script>
+{% endblock %}
