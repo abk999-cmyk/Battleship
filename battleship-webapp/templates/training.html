@@ -1,0 +1,598 @@
+{% extends "base.html" %}
+
+{% block title %}Model Training - AI Development{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="text-center mb-4">
+            <i class="fas fa-brain text-primary"></i> AI Model Training
+        </h1>
+        <p class="text-center text-muted">Train and optimize AI models for enhanced performance</p>
+    </div>
+</div>
+
+<!-- Training Overview -->
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="fas fa-neural-network text-info"></i> Neural Models
+                </h5>
+                <h3 class="text-info" id="neuralModels">3</h3>
+                <small class="text-muted">active models</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="fas fa-dna text-success"></i> Training Jobs
+                </h5>
+                <h3 class="text-success" id="trainingJobs">0</h3>
+                <small class="text-muted">running</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="fas fa-database text-warning"></i> Training Data
+                </h5>
+                <h3 class="text-warning" id="trainingData">15.2K</h3>
+                <small class="text-muted">game records</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="fas fa-chart-line text-secondary"></i> Best Accuracy
+                </h5>
+                <h3 class="text-secondary" id="bestAccuracy">94.7%</h3>
+                <small class="text-muted">validation</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Training Controls -->
+<div class="row mb-4">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-cogs"></i> Training Configuration</h5>
+            </div>
+            <div class="card-body">
+                <form id="trainingForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="modelType" class="form-label">Model Type</label>
+                                <select class="form-select" id="modelType">
+                                    <option value="heatmap">Heatmap Predictor</option>
+                                    <option value="opponent_model">Opponent Model</option>
+                                    <option value="meta_learner">Meta Learner</option>
+                                    <option value="strategy_classifier">Strategy Classifier</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="architecture" class="form-label">Architecture</label>
+                                <select class="form-select" id="architecture">
+                                    <option value="cnn">Convolutional Neural Network</option>
+                                    <option value="lstm">LSTM Recurrent Network</option>
+                                    <option value="transformer">Transformer</option>
+                                    <option value="hybrid">Hybrid CNN-LSTM</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="epochs" class="form-label">Epochs</label>
+                                <input type="number" class="form-control" id="epochs" value="100" min="10" max="1000">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="batchSize" class="form-label">Batch Size</label>
+                                <select class="form-select" id="batchSize">
+                                    <option value="16">16</option>
+                                    <option value="32" selected>32</option>
+                                    <option value="64">64</option>
+                                    <option value="128">128</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="learningRate" class="form-label">Learning Rate</label>
+                                <select class="form-select" id="learningRate">
+                                    <option value="0.01">0.01</option>
+                                    <option value="0.001" selected>0.001</option>
+                                    <option value="0.0001">0.0001</option>
+                                    <option value="auto">Auto</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="useAugmentation" checked>
+                            <label class="form-check-label" for="useAugmentation">
+                                Data Augmentation
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="useEarlyStopping" checked>
+                            <label class="form-check-label" for="useEarlyStopping">
+                                Early Stopping
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="saveCheckpoints">
+                            <label class="form-check-label" for="saveCheckpoints">
+                                Save Checkpoints
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="button" class="btn btn-success btn-lg me-2" onclick="startTraining()">
+                            <i class="fas fa-play"></i> Start Training
+                        </button>
+                        <button type="button" class="btn btn-outline-primary" onclick="generateTrainingData()">
+                            <i class="fas fa-database"></i> Generate Data
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-list"></i> Model Status</h5>
+            </div>
+            <div class="card-body">
+                <div class="model-status-item mb-3 p-2 border rounded">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong>Heatmap Model</strong>
+                            <br><small class="text-muted">battleship_heatmap.h5</small>
+                        </div>
+                        <span class="badge bg-success">Ready</span>
+                    </div>
+                    <div class="progress mt-2" style="height: 5px;">
+                        <div class="progress-bar bg-success" style="width: 100%"></div>
+                    </div>
+                    <small class="text-muted">Accuracy: 94.7%</small>
+                </div>
+                
+                <div class="model-status-item mb-3 p-2 border rounded">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong>Opponent Model</strong>
+                            <br><small class="text-muted">opponent_classifier.h5</small>
+                        </div>
+                        <span class="badge bg-warning">Training</span>
+                    </div>
+                    <div class="progress mt-2" style="height: 5px;">
+                        <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" style="width: 67%"></div>
+                    </div>
+                    <small class="text-muted">Epoch: 67/100</small>
+                </div>
+                
+                <div class="model-status-item mb-3 p-2 border rounded">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong>Meta Learner</strong>
+                            <br><small class="text-muted">meta_strategy.h5</small>
+                        </div>
+                        <span class="badge bg-secondary">Queued</span>
+                    </div>
+                    <div class="progress mt-2" style="height: 5px;">
+                        <div class="progress-bar bg-secondary" style="width: 0%"></div>
+                    </div>
+                    <small class="text-muted">Waiting for data...</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Training History -->
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5><i class="fas fa-chart-line"></i> Training Progress</h5>
+                <div class="btn-group btn-group-sm">
+                    <button type="button" class="btn btn-outline-primary active" onclick="showTrainingChart('loss')">
+                        Loss
+                    </button>
+                    <button type="button" class="btn btn-outline-primary" onclick="showTrainingChart('accuracy')">
+                        Accuracy
+                    </button>
+                    <button type="button" class="btn btn-outline-primary" onclick="showTrainingChart('learning_rate')">
+                        Learning Rate
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div id="trainingChartContainer" style="height: 300px;">
+                    <canvas id="trainingChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-history"></i> Training History</h5>
+            </div>
+            <div class="card-body">
+                <div class="training-history-item mb-2 p-2 bg-light rounded">
+                    <div class="d-flex justify-content-between">
+                        <strong>Heatmap v2.1</strong>
+                        <small class="text-success">Completed</small>
+                    </div>
+                    <small class="text-muted">2 hours ago • 94.7% accuracy</small>
+                </div>
+                
+                <div class="training-history-item mb-2 p-2 bg-light rounded">
+                    <div class="d-flex justify-content-between">
+                        <strong>Strategy Classifier</strong>
+                        <small class="text-danger">Failed</small>
+                    </div>
+                    <small class="text-muted">5 hours ago • Insufficient data</small>
+                </div>
+                
+                <div class="training-history-item mb-2 p-2 bg-light rounded">
+                    <div class="d-flex justify-content-between">
+                        <strong>Opponent Model v1.3</strong>
+                        <small class="text-success">Completed</small>
+                    </div>
+                    <small class="text-muted">1 day ago • 89.2% accuracy</small>
+                </div>
+                
+                <div class="text-center mt-3">
+                    <button class="btn btn-outline-primary btn-sm" onclick="loadTrainingHistory()">
+                        <i class="fas fa-history"></i> View All History
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Data Management -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-database"></i> Training Data Management</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="text-center p-3 border rounded">
+                            <h4 class="text-primary">15,247</h4>
+                            <small class="text-muted">Game Records</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="text-center p-3 border rounded">
+                            <h4 class="text-success">847K</h4>
+                            <small class="text-muted">Board States</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="text-center p-3 border rounded">
+                            <h4 class="text-info">2.1M</h4>
+                            <small class="text-muted">Move Sequences</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="text-center p-3 border rounded">
+                            <h4 class="text-warning">95.3%</h4>
+                            <small class="text-muted">Data Quality</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <button class="btn btn-primary me-2" onclick="exportData()">
+                            <i class="fas fa-download"></i> Export Data
+                        </button>
+                        <button class="btn btn-outline-primary" onclick="importData()">
+                            <i class="fas fa-upload"></i> Import Data
+                        </button>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <button class="btn btn-outline-danger" onclick="cleanupData()">
+                            <i class="fas fa-trash"></i> Cleanup Old Data
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+<script>
+class ModelTraining {
+    constructor() {
+        this.trainingChart = null;
+        this.socket = io();
+        this.setupSocketEvents();
+        this.initializeTrainingChart();
+    }
+    
+    setupSocketEvents() {
+        this.socket.on('training_progress', (data) => {
+            this.updateTrainingProgress(data);
+        });
+        
+        this.socket.on('training_complete', (data) => {
+            this.handleTrainingComplete(data);
+        });
+        
+        this.socket.on('training_error', (data) => {
+            this.handleTrainingError(data);
+        });
+    }
+    
+    initializeTrainingChart() {
+        const ctx = document.getElementById('trainingChart').getContext('2d');
+        
+        this.trainingChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: Array.from({length: 100}, (_, i) => i + 1),
+                datasets: [{
+                    label: 'Training Loss',
+                    data: this.generateMockTrainingData(),
+                    borderColor: 'rgba(220, 53, 69, 1)',
+                    backgroundColor: 'rgba(220, 53, 69, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }, {
+                    label: 'Validation Loss',
+                    data: this.generateMockValidationData(),
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Model Training Progress'
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Epochs'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Loss'
+                        }
+                    }
+                }
+            }
+        });
+    }
+    
+    generateMockTrainingData() {
+        return Array.from({length: 100}, (_, i) => {
+            return 2.0 * Math.exp(-i / 30) + 0.1 + Math.random() * 0.05;
+        });
+    }
+    
+    generateMockValidationData() {
+        return Array.from({length: 100}, (_, i) => {
+            return 2.2 * Math.exp(-i / 35) + 0.15 + Math.random() * 0.1;
+        });
+    }
+    
+    async startTraining() {
+        const config = this.getTrainingConfig();
+        
+        try {
+            const response = await fetch('/api/start_training', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(config)
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                this.showAlert('Training started successfully!', 'success');
+                this.updateTrainingJobs();
+            } else {
+                this.showAlert('Failed to start training: ' + result.error, 'danger');
+            }
+        } catch (error) {
+            console.error('Error starting training:', error);
+            this.showAlert('Failed to start training. Please try again.', 'danger');
+        }
+    }
+    
+    getTrainingConfig() {
+        return {
+            model_type: document.getElementById('modelType').value,
+            architecture: document.getElementById('architecture').value,
+            epochs: parseInt(document.getElementById('epochs').value),
+            batch_size: parseInt(document.getElementById('batchSize').value),
+            learning_rate: document.getElementById('learningRate').value,
+            use_augmentation: document.getElementById('useAugmentation').checked,
+            use_early_stopping: document.getElementById('useEarlyStopping').checked,
+            save_checkpoints: document.getElementById('saveCheckpoints').checked
+        };
+    }
+    
+    showTrainingChart(metric) {
+        // Update chart based on selected metric
+        const buttons = document.querySelectorAll('.btn-group .btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+        
+        let datasets;
+        
+        switch(metric) {
+            case 'accuracy':
+                datasets = [{
+                    label: 'Training Accuracy',
+                    data: Array.from({length: 100}, (_, i) => Math.min(95, 60 + i * 0.35 + Math.random() * 5)),
+                    borderColor: 'rgba(40, 167, 69, 1)',
+                    backgroundColor: 'rgba(40, 167, 69, 0.1)'
+                }, {
+                    label: 'Validation Accuracy',
+                    data: Array.from({length: 100}, (_, i) => Math.min(92, 55 + i * 0.37 + Math.random() * 5)),
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.1)'
+                }];
+                break;
+            case 'learning_rate':
+                datasets = [{
+                    label: 'Learning Rate',
+                    data: Array.from({length: 100}, (_, i) => 0.001 * Math.exp(-i / 50)),
+                    borderColor: 'rgba(255, 193, 7, 1)',
+                    backgroundColor: 'rgba(255, 193, 7, 0.1)'
+                }];
+                break;
+            default: // loss
+                datasets = this.trainingChart.data.datasets;
+        }
+        
+        this.trainingChart.data.datasets = datasets;
+        this.trainingChart.options.scales.y.title.text = metric === 'accuracy' ? 'Accuracy (%)' : 
+                                                        metric === 'learning_rate' ? 'Learning Rate' : 'Loss';
+        this.trainingChart.update();
+    }
+    
+    async generateTrainingData() {
+        this.showAlert('Generating training data...', 'info');
+        
+        // Simulate data generation
+        setTimeout(() => {
+            this.showAlert('Training data generated successfully!', 'success');
+            document.getElementById('trainingData').textContent = '16.8K';
+        }, 3000);
+    }
+    
+    updateTrainingJobs() {
+        const jobsCount = parseInt(document.getElementById('trainingJobs').textContent) + 1;
+        document.getElementById('trainingJobs').textContent = jobsCount;
+    }
+    
+    exportData() {
+        this.showAlert('Exporting training data...', 'info');
+    }
+    
+    importData() {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = '.json,.csv';
+        input.onchange = () => {
+            this.showAlert('Importing training data...', 'info');
+        };
+        input.click();
+    }
+    
+    cleanupData() {
+        if (confirm('Are you sure you want to cleanup old training data?')) {
+            this.showAlert('Cleaning up old data...', 'info');
+        }
+    }
+    
+    loadTrainingHistory() {
+        this.showAlert('Loading complete training history...', 'info');
+    }
+    
+    showAlert(message, type = 'info') {
+        const alertContainer = document.body;
+        const alert = document.createElement('div');
+        alert.className = `alert alert-${type} alert-dismissible fade show position-fixed`;
+        alert.style.cssText = 'top: 20px; right: 20px; z-index: 1050; max-width: 300px;';
+        alert.innerHTML = `
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        `;
+        
+        alertContainer.appendChild(alert);
+        
+        setTimeout(() => {
+            if (alert.parentNode) {
+                alert.remove();
+            }
+        }, 5000);
+    }
+}
+
+// Global functions
+let modelTraining;
+
+function startTraining() {
+    modelTraining.startTraining();
+}
+
+function showTrainingChart(metric) {
+    modelTraining.showTrainingChart(metric);
+}
+
+function generateTrainingData() {
+    modelTraining.generateTrainingData();
+}
+
+function exportData() {
+    modelTraining.exportData();
+}
+
+function importData() {
+    modelTraining.importData();
+}
+
+function cleanupData() {
+    modelTraining.cleanupData();
+}
+
+function loadTrainingHistory() {
+    modelTraining.loadTrainingHistory();
+}
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    modelTraining = new ModelTraining();
+});
+</script>
+{% endblock %}

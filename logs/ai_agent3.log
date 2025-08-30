@@ -1,0 +1,114 @@
+2025-08-30 18:59:02,873 - AI_Agent3 - INFO - TensorFlow imported successfully
+2025-08-30 18:59:03,545 - BattleshipDashboard - WARNING - No game data file found
+2025-08-30 18:59:03,545 - BattleshipDashboard - WARNING - No game data file found
+2025-08-30 18:59:03,545 - BattleshipDashboard - WARNING - No game data file found
+2025-08-30 18:59:03,547 - BattleshipDashboard - INFO - Dashboard initialized
+2025-08-30 18:59:08,154 - AI_Agent3 - INFO - TensorFlow imported successfully
+2025-08-30 18:59:08,261 - AI_Agent3 - INFO - Loaded neural heatmap model from /Users/abhinav/Desktop/Personal Projects/Battleship/models/battleship_heatmap.h5
+2025-08-30 18:59:08,261 - AI_Agent3 - INFO - AI Agent initialized: MainAI
+2025-08-30 18:59:08,261 - AI_agent4 - INFO - [GA] Loaded GA‑optimised meta‑weights from models/ga_weights.json: {'density': 0.4904895891191308, 'neural': 0.6021993763688016, 'montecarlo': 0.9711647059426145, 'information_gain': 0.0, 'opponent_model': 0.5145790072743006}
+2025-08-30 18:59:12,579 - AI_Agent3 - INFO - Loaded neural heatmap model from /Users/abhinav/Desktop/Personal Projects/Battleship/models/battleship_heatmap.h5
+2025-08-30 18:59:12,579 - AI_Agent3 - INFO - AI Agent initialized: AI-3
+2025-08-30 18:59:12,596 - BattleshipDashboard - INFO - Game set up: AI_Agent3(AI-3) vs AI_Agent1(AI-1)
+2025-08-30 18:59:30,939 - AI_Agent3 - INFO - Loaded neural heatmap model from /Users/abhinav/Desktop/Personal Projects/Battleship/models/battleship_heatmap.h5
+2025-08-30 18:59:30,940 - AI_Agent3 - INFO - AI Agent initialized: AI-3
+2025-08-30 18:59:30,958 - BattleshipDashboard - INFO - Game set up: AI_Agent3(AI-3) vs AI_Agent1(AI-1)
+2025-08-30 18:59:43,571 - AI_Agent3 - INFO - Loaded neural heatmap model from /Users/abhinav/Desktop/Personal Projects/Battleship/models/battleship_heatmap.h5
+2025-08-30 18:59:43,572 - AI_Agent3 - INFO - AI Agent initialized: AI-3
+2025-08-30 18:59:43,572 - AI_agent4 - INFO - [GA] Loaded GA‑optimised meta‑weights from models/ga_weights.json: {'density': 0.4904895891191308, 'neural': 0.6021993763688016, 'montecarlo': 0.9711647059426145, 'information_gain': 0.0, 'opponent_model': 0.5145790072743006}
+2025-08-30 18:59:43,589 - AI_Agent3 - INFO - Loaded neural heatmap model from /Users/abhinav/Desktop/Personal Projects/Battleship/models/battleship_heatmap.h5
+2025-08-30 18:59:43,590 - AI_Agent3 - INFO - AI Agent initialized: AI-1
+2025-08-30 18:59:43,590 - BattleshipDashboard - INFO - Game set up: AI_agent4(AI-3) vs AI_Agent3(AI-1)
+2025-08-30 19:00:32,729 - BattleshipDashboard - INFO - Game over: AI-1 wins in 78 moves, 49.1s
+2025-08-30 19:00:32,732 - BattleshipDashboard - INFO - Game data saved: 7cd1d8b1
+2025-08-30 19:00:32,733 - AI_Agent3 - INFO - Learned from game: win
+2025-08-30 19:00:32,734 - AI_Agent3 - INFO - Learned from game: loss
+2025-08-30 19:00:44,799 - AI_Agent3 - INFO - Loaded neural heatmap model from /Users/abhinav/Desktop/Personal Projects/Battleship/models/battleship_heatmap.h5
+2025-08-30 19:00:44,799 - AI_Agent3 - INFO - AI Agent initialized: AI-1
+2025-08-30 19:00:44,799 - BattleshipDashboard - INFO - Game set up: AI_Agent2(AI-3) vs AI_Agent3(AI-1)
+2025-08-30 19:01:04,317 - BattleshipDashboard - INFO - Game over: AI-1 wins in 68 moves, 19.5s
+2025-08-30 19:01:04,318 - BattleshipDashboard - INFO - Game data saved: 564cc21a
+2025-08-30 19:01:04,318 - AI_Agent3 - INFO - Learned from game: win
+2025-08-30 19:01:22,523 - AI_Agent3 - INFO - Loaded neural heatmap model from /Users/abhinav/Desktop/Personal Projects/Battleship/models/battleship_heatmap.h5
+2025-08-30 19:01:22,524 - AI_Agent3 - INFO - AI Agent initialized: AI_Agent3-0
+2025-08-30 19:01:22,524 - BattleshipDashboard - INFO - Game set up: Ultimate(Ultimate-0) vs AI_Agent3(AI_Agent3-0)
+2025-08-30 19:01:26,173 - BattleshipDashboard - INFO - Game over: AI_Agent3-0 wins in 72 moves, 3.6s
+2025-08-30 19:01:26,174 - BattleshipDashboard - INFO - Game data saved: ddbf574b
+2025-08-30 19:01:26,174 - AI_Agent3 - INFO - Learned from game: win
+2025-08-30 19:01:26,194 - AI_Agent3 - INFO - Loaded neural heatmap model from /Users/abhinav/Desktop/Personal Projects/Battleship/models/battleship_heatmap.h5
+2025-08-30 19:01:26,194 - AI_Agent3 - INFO - AI Agent initialized: AI_Agent3-1
+2025-08-30 19:01:26,195 - BattleshipDashboard - INFO - Game set up: Ultimate(Ultimate-1) vs AI_Agent3(AI_Agent3-1)
+2025-08-30 19:01:30,391 - BattleshipDashboard - INFO - Game over: AI_Agent3-1 wins in 80 moves, 4.2s
+2025-08-30 19:01:30,393 - BattleshipDashboard - INFO - Game data saved: b2c726e1
+2025-08-30 19:01:30,393 - AI_Agent3 - INFO - Learned from game: win
+2025-08-30 19:01:30,412 - AI_Agent3 - INFO - Loaded neural heatmap model from /Users/abhinav/Desktop/Personal Projects/Battleship/models/battleship_heatmap.h5
+2025-08-30 19:01:30,413 - AI_Agent3 - INFO - AI Agent initialized: AI_Agent3-2
+2025-08-30 19:01:30,413 - BattleshipDashboard - INFO - Game set up: Ultimate(Ultimate-2) vs AI_Agent3(AI_Agent3-2)
+2025-08-30 19:01:34,530 - BattleshipDashboard - INFO - Game over: Ultimate-2 wins in 101 moves, 4.1s
+2025-08-30 19:01:34,531 - BattleshipDashboard - INFO - Game data saved: cc39083d
+2025-08-30 19:01:34,532 - AI_Agent3 - INFO - Learned from game: loss
+2025-08-30 19:01:34,551 - AI_Agent3 - INFO - Loaded neural heatmap model from /Users/abhinav/Desktop/Personal Projects/Battleship/models/battleship_heatmap.h5
+2025-08-30 19:01:34,552 - AI_Agent3 - INFO - AI Agent initialized: AI_Agent3-3
+2025-08-30 19:01:34,552 - BattleshipDashboard - INFO - Game set up: Ultimate(Ultimate-3) vs AI_Agent3(AI_Agent3-3)
+2025-08-30 19:01:38,632 - BattleshipDashboard - INFO - Game over: AI_Agent3-3 wins in 82 moves, 4.1s
+2025-08-30 19:01:38,633 - BattleshipDashboard - INFO - Game data saved: 396ce771
+2025-08-30 19:01:38,634 - AI_Agent3 - INFO - Learned from game: win
+2025-08-30 19:01:38,733 - AI_Agent3 - INFO - Loaded neural heatmap model from /Users/abhinav/Desktop/Personal Projects/Battleship/models/battleship_heatmap.h5
+2025-08-30 19:01:38,733 - AI_Agent3 - INFO - AI Agent initialized: AI_Agent3-4
+2025-08-30 19:01:38,733 - BattleshipDashboard - INFO - Game set up: Ultimate(Ultimate-4) vs AI_Agent3(AI_Agent3-4)
+2025-08-30 19:01:42,069 - BattleshipDashboard - INFO - Game over: AI_Agent3-4 wins in 92 moves, 3.3s
+2025-08-30 19:01:42,070 - BattleshipDashboard - INFO - Game data saved: 4dabb356
+2025-08-30 19:01:42,071 - AI_Agent3 - INFO - Learned from game: win
+2025-08-30 19:01:42,092 - AI_Agent3 - INFO - Loaded neural heatmap model from /Users/abhinav/Desktop/Personal Projects/Battleship/models/battleship_heatmap.h5
+2025-08-30 19:01:42,092 - AI_Agent3 - INFO - AI Agent initialized: AI_Agent3-5
+2025-08-30 19:01:42,093 - BattleshipDashboard - INFO - Game set up: Ultimate(Ultimate-5) vs AI_Agent3(AI_Agent3-5)
+2025-08-30 19:01:46,196 - BattleshipDashboard - INFO - Game over: Ultimate-5 wins in 87 moves, 4.1s
+2025-08-30 19:01:46,197 - BattleshipDashboard - INFO - Game data saved: 0f0aa79d
+2025-08-30 19:01:46,197 - AI_Agent3 - INFO - Learned from game: loss
+2025-08-30 19:01:46,225 - AI_Agent3 - INFO - Loaded neural heatmap model from /Users/abhinav/Desktop/Personal Projects/Battleship/models/battleship_heatmap.h5
+2025-08-30 19:01:46,225 - AI_Agent3 - INFO - AI Agent initialized: AI_Agent3-6
+2025-08-30 19:01:46,226 - BattleshipDashboard - INFO - Game set up: Ultimate(Ultimate-6) vs AI_Agent3(AI_Agent3-6)
+2025-08-30 19:01:50,088 - BattleshipDashboard - INFO - Game over: AI_Agent3-6 wins in 92 moves, 3.9s
+2025-08-30 19:01:50,089 - BattleshipDashboard - INFO - Game data saved: bf32556b
+2025-08-30 19:01:50,089 - AI_Agent3 - INFO - Learned from game: win
+2025-08-30 19:01:50,112 - AI_Agent3 - INFO - Loaded neural heatmap model from /Users/abhinav/Desktop/Personal Projects/Battleship/models/battleship_heatmap.h5
+2025-08-30 19:01:50,112 - AI_Agent3 - INFO - AI Agent initialized: AI_Agent3-7
+2025-08-30 19:01:50,112 - BattleshipDashboard - INFO - Game set up: Ultimate(Ultimate-7) vs AI_Agent3(AI_Agent3-7)
+2025-08-30 19:01:58,059 - BattleshipDashboard - INFO - Game over: AI_Agent3-7 wins in 110 moves, 7.9s
+2025-08-30 19:01:58,061 - BattleshipDashboard - INFO - Game data saved: b37164dc
+2025-08-30 19:01:58,061 - AI_Agent3 - INFO - Learned from game: win
+2025-08-30 19:01:58,080 - AI_Agent3 - INFO - Loaded neural heatmap model from /Users/abhinav/Desktop/Personal Projects/Battleship/models/battleship_heatmap.h5
+2025-08-30 19:01:58,081 - AI_Agent3 - INFO - AI Agent initialized: AI_Agent3-8
+2025-08-30 19:01:58,081 - BattleshipDashboard - INFO - Game set up: Ultimate(Ultimate-8) vs AI_Agent3(AI_Agent3-8)
+2025-08-30 19:02:02,248 - BattleshipDashboard - INFO - Game over: AI_Agent3-8 wins in 78 moves, 4.2s
+2025-08-30 19:02:02,249 - BattleshipDashboard - INFO - Game data saved: a3f35574
+2025-08-30 19:02:02,249 - AI_Agent3 - INFO - Learned from game: win
+2025-08-30 19:02:02,275 - AI_Agent3 - INFO - Loaded neural heatmap model from /Users/abhinav/Desktop/Personal Projects/Battleship/models/battleship_heatmap.h5
+2025-08-30 19:02:02,275 - AI_Agent3 - INFO - AI Agent initialized: AI_Agent3-9
+2025-08-30 19:02:02,275 - BattleshipDashboard - INFO - Game set up: Ultimate(Ultimate-9) vs AI_Agent3(AI_Agent3-9)
+2025-08-30 19:02:06,050 - BattleshipDashboard - INFO - Game over: Ultimate-9 wins in 107 moves, 3.8s
+2025-08-30 19:02:06,052 - BattleshipDashboard - INFO - Game data saved: 4842c832
+2025-08-30 19:02:06,052 - AI_Agent3 - INFO - Learned from game: loss
+2025-08-30 19:02:06,096 - AI_Agent3 - INFO - Loaded neural heatmap model from /Users/abhinav/Desktop/Personal Projects/Battleship/models/battleship_heatmap.h5
+2025-08-30 19:02:06,097 - AI_Agent3 - INFO - AI Agent initialized: AI_Agent3-10
+2025-08-30 19:02:06,097 - BattleshipDashboard - INFO - Game set up: Ultimate(Ultimate-10) vs AI_Agent3(AI_Agent3-10)
+2025-08-30 19:02:10,398 - BattleshipDashboard - INFO - Game over: AI_Agent3-10 wins in 84 moves, 4.3s
+2025-08-30 19:02:10,400 - BattleshipDashboard - INFO - Game data saved: 767141cf
+2025-08-30 19:02:10,400 - AI_Agent3 - INFO - Learned from game: win
+2025-08-30 19:02:10,420 - AI_Agent3 - INFO - Loaded neural heatmap model from /Users/abhinav/Desktop/Personal Projects/Battleship/models/battleship_heatmap.h5
+2025-08-30 19:02:10,421 - AI_Agent3 - INFO - AI Agent initialized: AI_Agent3-11
+2025-08-30 19:02:10,421 - BattleshipDashboard - INFO - Game set up: Ultimate(Ultimate-11) vs AI_Agent3(AI_Agent3-11)
+2025-08-30 19:02:12,241 - BattleshipDashboard - INFO - Game over: AI_Agent3-11 wins in 52 moves, 1.8s
+2025-08-30 19:02:12,243 - BattleshipDashboard - INFO - Game data saved: 89809955
+2025-08-30 19:02:12,244 - AI_Agent3 - INFO - Learned from game: win
+2025-08-30 19:02:12,269 - AI_Agent3 - INFO - Loaded neural heatmap model from /Users/abhinav/Desktop/Personal Projects/Battleship/models/battleship_heatmap.h5
+2025-08-30 19:02:12,270 - AI_Agent3 - INFO - AI Agent initialized: AI_Agent3-12
+2025-08-30 19:02:12,270 - BattleshipDashboard - INFO - Game set up: Ultimate(Ultimate-12) vs AI_Agent3(AI_Agent3-12)
+2025-08-30 19:02:16,935 - BattleshipDashboard - INFO - Game over: AI_Agent3-12 wins in 98 moves, 4.7s
+2025-08-30 19:02:16,936 - BattleshipDashboard - INFO - Game data saved: fcef3106
+2025-08-30 19:02:16,936 - AI_Agent3 - INFO - Learned from game: win
+2025-08-30 19:02:16,955 - AI_Agent3 - INFO - Loaded neural heatmap model from /Users/abhinav/Desktop/Personal Projects/Battleship/models/battleship_heatmap.h5
+2025-08-30 19:02:16,957 - AI_Agent3 - INFO - AI Agent initialized: AI_Agent3-13
+2025-08-30 19:02:16,957 - BattleshipDashboard - INFO - Game set up: Ultimate(Ultimate-13) vs AI_Agent3(AI_Agent3-13)
+2025-08-30 19:02:23,659 - BattleshipDashboard - INFO - Batch simulation paused
+2025-08-30 19:02:23,660 - BattleshipDashboard - INFO - Batch simulation completed: 13/100 games

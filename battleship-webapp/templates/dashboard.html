@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+
+{% block title %}Battleship Dashboard - Game Statistics{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="text-center mb-4">
+            <i class="fas fa-chart-bar text-primary"></i> Game Dashboard
+        </h1>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="fas fa-gamepad text-primary"></i> Active Games
+                </h5>
+                <h2 class="text-primary" id="activeGamesCount">-</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="fas fa-trophy text-warning"></i> Total Games
+                </h5>
+                <h2 class="text-warning" id="totalGamesCount">-</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="fas fa-robot text-info"></i> AI Wins
+                </h5>
+                <h2 class="text-info" id="aiWinsCount">-</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="fas fa-user text-success"></i> Human Wins
+                </h5>
+                <h2 class="text-success" id="humanWinsCount">-</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-list"></i> Recent Games</h5>
+                <button class="btn btn-primary btn-sm float-end" onclick="refreshDashboard()">
+                    <i class="fas fa-sync"></i> Refresh
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Game ID</th>
+                                <th>Player 1</th>
+                                <th>Player 2</th>
+                                <th>Status</th>
+                                <th>Winner</th>
+                                <th>Created</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="gamesTableBody">
+                            <tr>
+                                <td colspan="7" class="text-center">
+                                    <div class="spinner-border" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12 text-center">
+        <a href="/" class="btn btn-primary btn-lg">
+            <i class="fas fa-play"></i> Start New Game
+        </a>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+class Dashboard {
+    constructor() {
+        this.loadDashboardData();
+        
+        // Auto-refresh every 30 seconds
+        setInterval(() => {
+            this.loadDashboardData();
+        }, 30000);
+    }
+    
+    async loadDashboardData() {
+        try {
+            const response = await fetch('/api/games');
+            const games = await response.json();
+            
+            this.updateStatistics(games);
+            this.updateGamesTable(games);
+        } catch (error) {
+            console.error('Error loading dashboard data:', error);
+        }
+    }
+    
+    updateStatistics(games) {
+        const activeGames = games.filter(game => !game.game_over).length;
+        const totalGames = games.length;
+        const aiWins = games.filter(game => game.game_over && game.winner && game.winner.includes('AI')).length;
+        const humanWins = games.filter(game => game.game_over && game.winner && !game.winner.includes('AI')).length;
+        
+        document.getElementById('activeGamesCount').textContent = activeGames;
+        document.getElementById('totalGamesCount').textContent = totalGames;
+        document.getElementById('aiWinsCount').textContent = aiWins;
+        document.getElementById('humanWinsCount').textContent = humanWins;
+    }
+    
+    updateGamesTable(games) {
+        const tbody = document.getElementById('gamesTableBody');
+        
+        if (games.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="7" class="text-center">No games found</td></tr>';
+            return;
+        }
+        
+        tbody.innerHTML = games.map(game => `
+            <tr>
+                <td><code>${game.game_id.substring(0, 8)}...</code></td>
+                <td>${game.player1}</td>
+                <td>${game.player2}</td>
+                <td>
+                    <span class="badge ${game.game_over ? 'bg-secondary' : 'bg-success'}">
+                        ${game.game_over ? 'Finished' : 'Active'}
+                    </span>
+                </td>
+                <td>${game.winner || '-'}</td>
+                <td>${new Date(game.created_at).toLocaleString()}</td>
+                <td>
+                    <button class="btn btn-sm btn-outline-primary" onclick="viewGame('${game.game_id}')">
+                        <i class="fas fa-eye"></i> View
+                    </button>
+                </td>
+            </tr>
+        `).join('');
+    }
+}
+
+function refreshDashboard() {
+    dashboard.loadDashboardData();
+}
+
+function viewGame(gameId) {
+    // Implement game viewing functionality
+    alert(`Viewing game ${gameId} - Feature coming soon!`);
+}
+
+// Initialize dashboard when page loads
+let dashboard;
+document.addEventListener('DOMContentLoaded', function() {
+    dashboard = new Dashboard();
+});
+</script>
+{% endblock %}

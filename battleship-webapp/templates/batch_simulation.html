@@ -1,0 +1,436 @@
+{% extends "base.html" %}
+
+{% block title %}Batch Simulation - AI Performance Testing{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="text-center mb-4">
+            <i class="fas fa-flask text-primary"></i> Batch AI Simulation
+        </h1>
+        <p class="text-center text-muted">Run large-scale AI vs AI battles to benchmark performance</p>
+    </div>
+</div>
+
+<!-- Simulation Setup -->
+<div class="row mb-4">
+    <div class="col-md-8 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-cogs"></i> Simulation Parameters</h5>
+            </div>
+            <div class="card-body">
+                <form id="simulationSetupForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="numGames" class="form-label">Games per Matchup</label>
+                                <input type="number" class="form-control" id="numGames" value="100" min="10" max="1000">
+                                <div class="form-text">Number of games to play for each AI matchup</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="simulationType" class="form-label">Simulation Type</label>
+                                <select class="form-select" id="simulationType">
+                                    <option value="tournament">Full Tournament</option>
+                                    <option value="benchmark">Benchmark vs All</option>
+                                    <option value="custom">Custom Matchups</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Main AI Agents to Test</label>
+                        <div class="row" id="mainAISelection">
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="ai_agent3" id="ai3" checked>
+                                    <label class="form-check-label" for="ai3">AIAgent3 (Flagship)</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="ai_agent4" id="ai4">
+                                    <label class="form-check-label" for="ai4">AIAgent4</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="ai_player2" id="ai2">
+                                    <label class="form-check-label" for="ai2">AIPlayer2</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="classic" id="classic">
+                                    <label class="form-check-label" for="classic">Classic AI</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Test Against</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="testAgainst" value="all" id="testAll" checked>
+                            <label class="form-check-label" for="testAll">All Available Agents</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="testAgainst" value="benchmarks" id="testBenchmarks">
+                            <label class="form-check-label" for="testBenchmarks">Benchmark Agents Only</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="testAgainst" value="naive" id="testNaive">
+                            <label class="form-check-label" for="testNaive">Naive Agents (1-10)</label>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary btn-lg" onclick="startBatchSimulation()">
+                            <i class="fas fa-play"></i> Start Simulation
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Active Simulations -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5><i class="fas fa-running"></i> Active Simulations</h5>
+                <button class="btn btn-outline-primary btn-sm" onclick="refreshSimulations()">
+                    <i class="fas fa-sync"></i> Refresh
+                </button>
+            </div>
+            <div class="card-body">
+                <div id="activeSimulations">
+                    <div class="text-center text-muted">
+                        <i class="fas fa-info-circle"></i> No active simulations
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Results Section -->
+<div class="row mt-4" id="resultsSection" style="display: none;">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-chart-line"></i> Simulation Results</h5>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <button class="btn btn-info btn-sm me-2" onclick="generatePlot('win_rates')">
+                            <i class="fas fa-chart-bar"></i> Win Rates
+                        </button>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-info btn-sm me-2" onclick="generatePlot('avg_moves')">
+                            <i class="fas fa-chart-area"></i> Avg Moves
+                        </button>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-info btn-sm" onclick="generatePlot('performance_summary')">
+                            <i class="fas fa-chart-pie"></i> Summary
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="plotContainer" class="text-center">
+                    <div class="text-muted">Run a simulation to see results</div>
+                </div>
+                
+                <div class="table-responsive mt-4">
+                    <table class="table table-striped" id="resultsTable">
+                        <thead>
+                            <tr>
+                                <th>Main AI</th>
+                                <th>Opponent</th>
+                                <th>Win Rate</th>
+                                <th>Wins</th>
+                                <th>Losses</th>
+                                <th>Avg Moves</th>
+                                <th>Avg Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+class BatchSimulation {
+    constructor() {
+        this.socket = io();
+        this.currentSimulation = null;
+        this.setupSocketEvents();
+        this.loadActiveSimulations();
+    }
+    
+    setupSocketEvents() {
+        this.socket.on('simulation_progress', (data) => {
+            this.updateSimulationProgress(data);
+        });
+        
+        this.socket.on('simulation_complete', (data) => {
+            this.handleSimulationComplete(data);
+        });
+        
+        this.socket.on('simulation_error', (data) => {
+            this.handleSimulationError(data);
+        });
+    }
+    
+    async startSimulation() {
+        const formData = this.getFormData();
+        
+        try {
+            const response = await fetch('/api/start_batch_simulation', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                this.currentSimulation = result.simulation_id;
+                this.socket.emit('join_simulation', {
+                    simulation_id: result.simulation_id
+                });
+                this.showAlert('Simulation started successfully!', 'success');
+                this.loadActiveSimulations();
+            } else {
+                this.showAlert('Failed to start simulation: ' + result.error, 'danger');
+            }
+        } catch (error) {
+            console.error('Error starting simulation:', error);
+            this.showAlert('Failed to start simulation. Please try again.', 'danger');
+        }
+    }
+    
+    getFormData() {
+        const numGames = parseInt(document.getElementById('numGames').value);
+        const simulationType = document.getElementById('simulationType').value;
+        
+        // Get selected main AI agents
+        const aiAgents = [];
+        document.querySelectorAll('#mainAISelection input[type="checkbox"]:checked').forEach(checkbox => {
+            aiAgents.push(checkbox.value);
+        });
+        
+        // Get test against selection
+        const testAgainst = document.querySelector('input[name="testAgainst"]:checked').value;
+        
+        return {
+            num_games: numGames,
+            simulation_type: simulationType,
+            ai_agents: aiAgents,
+            test_against: testAgainst
+        };
+    }
+    
+    async loadActiveSimulations() {
+        try {
+            const response = await fetch('/api/batch_simulations');
+            const simulations = await response.json();
+            
+            this.displayActiveSimulations(simulations);
+        } catch (error) {
+            console.error('Error loading simulations:', error);
+        }
+    }
+    
+    displayActiveSimulations(simulations) {
+        const container = document.getElementById('activeSimulations');
+        
+        if (simulations.length === 0) {
+            container.innerHTML = '<div class="text-center text-muted"><i class="fas fa-info-circle"></i> No active simulations</div>';
+            return;
+        }
+        
+        container.innerHTML = simulations.map(sim => `
+            <div class="simulation-item mb-3 p-3 border rounded ${sim.status === 'running' ? 'border-primary' : ''}">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6>Simulation ${sim.id.substring(0, 8)}</h6>
+                        <small class="text-muted">Started: ${new Date(sim.start_time).toLocaleString()}</small>
+                    </div>
+                    <div>
+                        <span class="badge ${sim.status === 'running' ? 'bg-primary' : sim.status === 'completed' ? 'bg-success' : 'bg-danger'}">
+                            ${sim.status.toUpperCase()}
+                        </span>
+                    </div>
+                </div>
+                
+                ${sim.status === 'running' ? `
+                    <div class="progress mt-2">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" 
+                             style="width: ${sim.progress}%"
+                             id="progress-${sim.id}">
+                            ${sim.progress}%
+                        </div>
+                    </div>
+                ` : ''}
+                
+                <div class="mt-2">
+                    <button class="btn btn-outline-primary btn-sm" onclick="viewSimulationResults('${sim.id}')">
+                        <i class="fas fa-eye"></i> View Results
+                    </button>
+                </div>
+            </div>
+        `).join('');
+    }
+    
+    updateSimulationProgress(data) {
+        const progressBar = document.getElementById(`progress-${data.simulation_id}`);
+        if (progressBar) {
+            progressBar.style.width = `${data.progress}%`;
+            progressBar.textContent = `${data.progress}%`;
+        }
+    }
+    
+    async handleSimulationComplete(data) {
+        this.showAlert('Simulation completed successfully!', 'success');
+        this.loadActiveSimulations();
+        await this.viewSimulationResults(data.simulation_id);
+    }
+    
+    handleSimulationError(data) {
+        this.showAlert(`Simulation failed: ${data.error}`, 'danger');
+        this.loadActiveSimulations();
+    }
+    
+    async viewSimulationResults(simulationId) {
+        try {
+            const response = await fetch(`/api/batch_simulation/${simulationId}`);
+            const simulation = await response.json();
+            
+            if (simulation.results && simulation.results.length > 0) {
+                this.displayResults(simulation.results);
+                document.getElementById('resultsSection').style.display = 'block';
+                this.currentSimulation = simulationId;
+            }
+        } catch (error) {
+            console.error('Error loading simulation results:', error);
+        }
+    }
+    
+    displayResults(results) {
+        const tbody = document.querySelector('#resultsTable tbody');
+        tbody.innerHTML = results.map(result => `
+            <tr>
+                <td><strong>${result.main_ai}</strong></td>
+                <td>${result.opponent}</td>
+                <td>
+                    <span class="badge ${result.win_rate > 0.7 ? 'bg-success' : result.win_rate > 0.5 ? 'bg-warning' : 'bg-danger'}">
+                        ${(result.win_rate * 100).toFixed(1)}%
+                    </span>
+                </td>
+                <td>${result.wins}</td>
+                <td>${result.losses}</td>
+                <td>${result.avg_moves.toFixed(1)}</td>
+                <td>${result.avg_time.toFixed(2)}s</td>
+            </tr>
+        `).join('');
+    }
+    
+    async generatePlot(plotType) {
+        if (!this.currentSimulation) {
+            this.showAlert('Please select a simulation first', 'warning');
+            return;
+        }
+        
+        try {
+            const response = await fetch('/api/generate_performance_plot', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    plot_type: plotType,
+                    simulation_id: this.currentSimulation
+                })
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                const plotContainer = document.getElementById('plotContainer');
+                plotContainer.innerHTML = `
+                    <img src="${result.plot_url}" class="img-fluid" alt="${plotType} plot" 
+                         style="max-height: 500px;">
+                `;
+            } else {
+                this.showAlert('Failed to generate plot: ' + result.error, 'danger');
+            }
+        } catch (error) {
+            console.error('Error generating plot:', error);
+            this.showAlert('Failed to generate plot. Please try again.', 'danger');
+        }
+    }
+    
+    showAlert(message, type = 'info') {
+        // Reuse alert system from main game
+        const alertContainer = document.getElementById('alertContainer') || document.body;
+        const alert = document.createElement('div');
+        alert.className = `alert alert-${type} alert-dismissible fade show position-fixed`;
+        alert.style.cssText = 'top: 20px; right: 20px; z-index: 1050; max-width: 300px;';
+        alert.innerHTML = `
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        `;
+        
+        alertContainer.appendChild(alert);
+        
+        setTimeout(() => {
+            if (alert.parentNode) {
+                alert.remove();
+            }
+        }, 5000);
+    }
+}
+
+// Global functions
+let batchSim;
+
+function startBatchSimulation() {
+    batchSim.startSimulation();
+}
+
+function refreshSimulations() {
+    batchSim.loadActiveSimulations();
+}
+
+function viewSimulationResults(simulationId) {
+    batchSim.viewSimulationResults(simulationId);
+}
+
+function generatePlot(plotType) {
+    batchSim.generatePlot(plotType);
+}
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    batchSim = new BatchSimulation();
+});
+</script>
+{% endblock %}

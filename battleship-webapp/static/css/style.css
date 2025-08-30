@@ -1,0 +1,298 @@
+/* Battleship Web Game Styles */
+
+:root {
+    --water-color: #1e40af;
+    --ship-color: #6b7280;
+    --hit-color: #dc2626;
+    --miss-color: #60a5fa;
+    --board-border: #374151;
+}
+
+body {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.card {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+/* Battleship Board Styles */
+.battleship-board {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    gap: 2px;
+    background-color: var(--board-border);
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 400px;
+    margin: 0 auto;
+    aspect-ratio: 1;
+}
+
+.board-cell {
+    background-color: var(--water-color);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: white;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.board-cell:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+}
+
+/* Cell States */
+.board-cell.water {
+    background-color: var(--water-color);
+}
+
+.board-cell.ship {
+    background-color: var(--ship-color);
+}
+
+.board-cell.hit {
+    background-color: var(--hit-color);
+}
+
+.board-cell.hit::after {
+    content: '💥';
+    font-size: 1rem;
+}
+
+.board-cell.miss {
+    background-color: var(--miss-color);
+}
+
+.board-cell.miss::after {
+    content: '💧';
+    font-size: 1rem;
+}
+
+.board-cell.sunk {
+    background-color: #7f1d1d;
+}
+
+.board-cell.sunk::after {
+    content: '💀';
+    font-size: 1rem;
+}
+
+/* Attack board specific styles */
+.attack-board .board-cell {
+    cursor: crosshair;
+}
+
+.attack-board .board-cell:hover {
+    background-color: rgba(255, 255, 0, 0.3);
+}
+
+.attack-board .board-cell.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+/* Defense board specific styles */
+.defense-board .board-cell {
+    cursor: default;
+}
+
+/* Ship placement styles */
+.placement-board .board-cell {
+    cursor: pointer;
+}
+
+.placement-board .board-cell.preview {
+    background-color: rgba(255, 255, 0, 0.5);
+}
+
+.placement-board .board-cell.invalid-preview {
+    background-color: rgba(255, 0, 0, 0.5);
+}
+
+.placement-board .board-cell.placed-ship {
+    background-color: var(--ship-color);
+}
+
+/* Ship list styles */
+.ship-item {
+    padding: 8px 12px;
+    margin: 5px 0;
+    background-color: #f8f9fa;
+    border: 2px solid #dee2e6;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.ship-item:hover {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+}
+
+.ship-item.selected {
+    background-color: #cfe2ff;
+    border-color: #0d6efd;
+    color: #0d6efd;
+}
+
+.ship-item.placed {
+    background-color: #d1e7dd;
+    border-color: #198754;
+    color: #198754;
+    cursor: default;
+}
+
+/* Game status indicators */
+.badge {
+    font-size: 0.875rem;
+}
+
+/* Alert styles */
+.alert-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    max-width: 300px;
+}
+
+.alert {
+    margin-bottom: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Loading spinner */
+.spinner-border-sm {
+    width: 1rem;
+    height: 1rem;
+}
+
+/* Game controls */
+.game-controls {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Spectator mode styles */
+.spectator-board .board-cell {
+    cursor: default !important;
+}
+
+.spectator-board .board-cell:hover {
+    transform: none !important;
+    background-color: inherit !important;
+}
+
+/* Modal customizations */
+.modal-content {
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+    background: linear-gradient(135deg, #1e40af, #3b82f6);
+    color: white;
+    border-bottom: none;
+}
+
+.modal-header .btn-close {
+    filter: invert(1);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .battleship-board {
+        max-width: 100%;
+        padding: 5px;
+        gap: 1px;
+    }
+    
+    .board-cell {
+        font-size: 0.6rem;
+    }
+    
+    .board-cell.hit::after,
+    .board-cell.miss::after,
+    .board-cell.sunk::after {
+        font-size: 0.8rem;
+    }
+}
+
+/* Animation classes */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.bounce {
+    animation: bounce 0.5s ease;
+}
+
+@keyframes bounce {
+    0%, 20%, 60%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    80% { transform: translateY(-5px); }
+}
+
+/* Game winner styles */
+.winner-banner {
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    color: #1f2937;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 20px 0;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+.winner-banner h2 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* Turn indicator */
+.turn-indicator {
+    position: relative;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.turn-indicator.your-turn {
+    background: linear-gradient(45deg, #10b981, #34d399);
+    color: white;
+    animation: pulse 2s infinite;
+}
+
+.turn-indicator.opponent-turn {
+    background: linear-gradient(45deg, #f59e0b, #fbbf24);
+    color: white;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}

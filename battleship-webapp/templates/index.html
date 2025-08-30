@@ -1,0 +1,261 @@
+{% extends "base.html" %}
+
+{% block title %}Battleship Game - Play Online{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="text-center mb-4">
+            <i class="fas fa-ship text-primary"></i> Battleship Web Game
+        </h1>
+    </div>
+</div>
+
+<!-- Game Setup Modal -->
+<div class="modal fade" id="gameSetupModal" tabindex="-1" data-bs-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Setup New Game</h5>
+            </div>
+            <div class="modal-body">
+                <form id="gameSetupForm">
+                    <div class="mb-3">
+                        <label for="player1Name" class="form-label">Your Name</label>
+                        <input type="text" class="form-control" id="player1Name" value="Player 1" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="gameMode" class="form-label">Game Mode</label>
+                        <select class="form-select" id="gameMode">
+                            <option value="human_vs_ai">Human vs AI</option>
+                            <option value="ai_vs_ai">AI vs AI (Watch)</option>
+                            <option value="human_vs_human">Human vs Human</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3" id="aiPlayer1Group">
+                        <label for="aiType1" class="form-label">Player 1 AI Agent</label>
+                        <select class="form-select" id="aiType1">
+                            <option value="basic">Basic AI</option>
+                            <option value="classic">Classic AI</option>
+                            <option value="ai_player2">AIPlayer2 (Neural)</option>
+                            <option value="ai_agent3" selected>AIAgent3 (Flagship)</option>
+                            <option value="ai_agent4">AIAgent4 (Advanced)</option>
+                            <option value="ultimate">Ultimate Agent</option>
+                            <option value="naive1">Naive Agent 1 (Very Easy)</option>
+                            <option value="naive5">Naive Agent 5 (Easy)</option>
+                            <option value="naive10">Naive Agent 10 (Medium)</option>
+                        </select>
+                        <div class="form-text">Choose AI agent for Player 1</div>
+                    </div>
+                    
+                    <div class="mb-3" id="aiPlayer2Group" style="display: none;">
+                        <label for="aiType2" class="form-label">Player 2 AI Agent</label>
+                        <select class="form-select" id="aiType2">
+                            <option value="basic">Basic AI</option>
+                            <option value="classic">Classic AI</option>
+                            <option value="ai_player2">AIPlayer2 (Neural)</option>
+                            <option value="ai_agent3">AIAgent3 (Flagship)</option>
+                            <option value="ai_agent4">AIAgent4 (Advanced)</option>
+                            <option value="ultimate" selected>Ultimate Agent</option>
+                            <option value="naive1">Naive Agent 1 (Very Easy)</option>
+                            <option value="naive5">Naive Agent 5 (Easy)</option>
+                            <option value="naive10">Naive Agent 10 (Medium)</option>
+                        </select>
+                        <div class="form-text">Choose AI agent for Player 2</div>
+                    </div>
+                    
+                    <div class="mb-3" id="player2NameGroup" style="display: none;">
+                        <label for="player2Name" class="form-label">Player 2 Name</label>
+                        <input type="text" class="form-control" id="player2Name" value="Player 2">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="createGame()">
+                    <i class="fas fa-play"></i> Start Game
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Ship Placement Modal -->
+<div class="modal fade" id="shipPlacementModal" tabindex="-1" data-bs-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Place Your Ships</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div id="shipPlacementBoard" class="battleship-board placement-board"></div>
+                    </div>
+                    <div class="col-md-4">
+                        <h6>Ships to Place:</h6>
+                        <div id="shipsList">
+                            <div class="ship-item" data-size="5">
+                                <i class="fas fa-ship"></i> Carrier (5)
+                            </div>
+                            <div class="ship-item" data-size="4">
+                                <i class="fas fa-ship"></i> Battleship (4)
+                            </div>
+                            <div class="ship-item" data-size="3">
+                                <i class="fas fa-ship"></i> Cruiser (3)
+                            </div>
+                            <div class="ship-item" data-size="3">
+                                <i class="fas fa-ship"></i> Submarine (3)
+                            </div>
+                            <div class="ship-item" data-size="2">
+                                <i class="fas fa-ship"></i> Destroyer (2)
+                            </div>
+                        </div>
+                        
+                        <div class="mt-3">
+                            <label class="form-label">Orientation:</label>
+                            <div>
+                                <input type="radio" name="orientation" value="H" id="horizontal" checked>
+                                <label for="horizontal">Horizontal</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="orientation" value="V" id="vertical">
+                                <label for="vertical">Vertical</label>
+                            </div>
+                        </div>
+                        
+                        <button type="button" class="btn btn-success mt-3" onclick="randomPlaceShips()">
+                            <i class="fas fa-random"></i> Random Placement
+                        </button>
+                        
+                        <button type="button" class="btn btn-warning mt-2" onclick="clearShips()">
+                            <i class="fas fa-trash"></i> Clear All
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="confirmShipPlacement()" id="confirmPlacementBtn" disabled>
+                    <i class="fas fa-check"></i> Confirm Placement
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Game Area -->
+<div id="gameArea" style="display: none;">
+    <div class="row">
+        <!-- Game Info -->
+        <div class="col-12 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row text-center">
+                        <div class="col-md-3">
+                            <h6>Current Turn</h6>
+                            <span id="currentTurn" class="badge bg-primary fs-6">-</span>
+                        </div>
+                        <div class="col-md-3">
+                            <h6>Move Count</h6>
+                            <span id="moveCount" class="badge bg-secondary fs-6">0</span>
+                        </div>
+                        <div class="col-md-3">
+                            <h6>Last Move</h6>
+                            <span id="lastMove" class="badge bg-info fs-6">-</span>
+                        </div>
+                        <div class="col-md-3">
+                            <h6>Game Status</h6>
+                            <span id="gameStatus" class="badge bg-success fs-6">Active</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Game Boards -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5><i class="fas fa-crosshairs"></i> Your Attack Board</h5>
+                    <small class="text-muted">Click to attack opponent's ships</small>
+                </div>
+                <div class="card-body">
+                    <div id="attackBoard" class="battleship-board attack-board"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5><i class="fas fa-shield-alt"></i> Your Defense Board</h5>
+                    <small class="text-muted">Your ships and enemy attacks</small>
+                </div>
+                <div class="card-body">
+                    <div id="defenseBoard" class="battleship-board defense-board"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Game Controls -->
+    <div class="row mt-3">
+        <div class="col-12 text-center">
+            <button type="button" class="btn btn-danger" onclick="endGame()">
+                <i class="fas fa-stop"></i> End Game
+            </button>
+            <button type="button" class="btn btn-secondary" onclick="newGame()">
+                <i class="fas fa-plus"></i> New Game
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Welcome Screen -->
+<div id="welcomeScreen" class="text-center">
+    <div class="card mx-auto" style="max-width: 500px;">
+        <div class="card-body">
+            <h2><i class="fas fa-anchor"></i> Welcome to Battleship!</h2>
+            <p class="lead">Challenge AI opponents or play with friends in this classic naval strategy game.</p>
+            <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#gameSetupModal">
+                <i class="fas fa-play"></i> Start New Game
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Alert Container -->
+<div id="alertContainer" class="position-fixed top-0 end-0 p-3" style="z-index: 1050;">
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Show game setup modal on page load
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle game mode changes
+    document.getElementById('gameMode').addEventListener('change', function() {
+        const gameMode = this.value;
+        const aiPlayer1Group = document.getElementById('aiPlayer1Group');
+        const aiPlayer2Group = document.getElementById('aiPlayer2Group');
+        const player2NameGroup = document.getElementById('player2NameGroup');
+        
+        if (gameMode === 'human_vs_human') {
+            aiPlayer1Group.style.display = 'none';
+            aiPlayer2Group.style.display = 'none';
+            player2NameGroup.style.display = 'block';
+        } else if (gameMode === 'ai_vs_ai') {
+            aiPlayer1Group.style.display = 'block';
+            aiPlayer2Group.style.display = 'block';
+            player2NameGroup.style.display = 'none';
+        } else { // human_vs_ai
+            aiPlayer1Group.style.display = 'block';
+            aiPlayer2Group.style.display = 'none';
+            player2NameGroup.style.display = 'none';
+        }
+    });
+});
+</script>
+{% endblock %}

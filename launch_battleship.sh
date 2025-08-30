@@ -1,3 +1,3 @@
 #!/bin/bash
-cd /Users/abhinav/PycharmProjects/Battleship
+cd /Users/abhinav/Desktop/Personal Projects/Battleship
 python3 battleship_dashboard.py

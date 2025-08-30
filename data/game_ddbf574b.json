@@ -1,0 +1,10 @@
+{
+  "game_id": "ddbf574b",
+  "player1": "UltimateBattleshipAgent",
+  "player2": "AIAgent3",
+  "winner": "AIAgent3",
+  "winner_idx": 2,
+  "move_count": 72,
+  "duration": 3.6489391326904297,
+  "timestamp": "2025-08-30T19:01:26.173613"
+}
