@@ -1,0 +1,4 @@
+opponent,games,main_ai_wins,main_ai_losses,avg_moves_to_win
+UltimateBattleshipAgent,10,8,2,42.0
+NaiveAgent6,10,10,0,45.2
+AIPlayer2,10,5,5,40.8
