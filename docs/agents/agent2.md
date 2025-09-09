@@ -1,9 +1,9 @@
 ## Agent 2: Probabilistic Monte Carlo + Neural Heatmap
 
-This document specifies `AI_agent2.py` (class `AIPlayer2`) in scientific detail: state, algorithms, and decision policy.
+This document specifies `agents/AI_agent2.py` (class `AIPlayer2`) in scientific detail: state, algorithms, and decision policy.
 
 ### State representation
-- Board size `BOARD_SIZE = 10`; ship sizes from `board.SHIP_SIZES`.
+- Board size `BOARD_SIZE = 10`; ship sizes from `core.board.SHIP_SIZES`.
 - Belief grid `result_grid ∈ {−1,0,1}^{10×10}`: −1=miss, 0=unknown, 1=hit.
 - Action set `available_moves ⊂ [0..9]×[0..9]` maintained as a set for O(1) deletions.
 - Hit memory `hits` for active, unsunk fragments; `sunk_ships_info` with coordinates and sizes; `hit_count` tracks confirmed ship squares.

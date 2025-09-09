@@ -9,7 +9,7 @@ source .venv/bin/activate
 python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
-- macOS/Apple Silicon: optionally run `python setup_tensorflow.py` for TF metal acceleration.
+- macOS/Apple Silicon: optionally run `python scripts/setup_tensorflow.py` for TF metal acceleration.
 
 ### Deterministic seeds
 ```python
@@ -21,26 +21,26 @@ np.random.seed(1337)
 
 ### Model training
 ```bash
-python generate_dataset.py --games 50000 --workers 8 --out data/battleship_supervised.pkl
-python train_heatmap.py
-python rl_finetune.py --games 20000 --workers $(sysctl -n hw.ncpu) --batch 256
+python training/generate_dataset.py --games 50000 --workers 8 --out data/battleship_supervised.pkl
+python training/train_heatmap.py
+python training/rl_finetune.py --games 20000 --workers $(sysctl -n hw.ncpu) --batch 256
 ```
 
 ### GA evolution
 ```bash
-python ga_optimizer.py --pop 40 --gens 50 --cpus 8
+python training/ga_optimizer.py --pop 40 --gens 50 --cpus 8
 ```
 
 ### Benchmarking
 ```bash
-python main.py --games 1000
+python apps/main.py --games 1000
 # or
-python main.py --watch --opp ultimate --delay 0.3
+python apps/main.py --watch --opp ultimate --delay 0.3
 ```
 
 ### Dashboard
 ```bash
-python battleship_dashboard.py
+python apps/battleship_dashboard.py
 ```
 
 ### Data locations

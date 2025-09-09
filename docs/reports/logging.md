@@ -2,7 +2,7 @@
 
 ### Logging
 - Global logs: `logs/` directory; dashboard logs to `logs/dashboard.log`, agents and training scripts log to their respective files (e.g., `logs/ai_agent3.log`, `logs/opponent_model.log`, `logs/meta_learner.log`).
-- Metrics: `battleship_app.py` logs per-batch metrics to `game_logs/metrics.csv`; dashboard writes game metadata and moves to `data/`.
+- Metrics: `apps/battleship_app.py` logs per-batch metrics to `game_logs/metrics.csv`; dashboard writes game metadata and moves to `data/`.
 
 ### Error handling
 - Agents (AIAgent3): defensive imports for TensorFlow/SciPy/NetworkX; graceful degradation when deps absent.

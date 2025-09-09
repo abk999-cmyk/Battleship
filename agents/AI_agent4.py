@@ -9,7 +9,7 @@ loads the GA‑optimised meta‑weights stored in `models/ga_weights.json`.
 Usage
 -----
 ```python
-from AI_agent4 import AIAgent4 as AIAgent  # <- switch import like this
+# from AI_agent4 import AIAgent4 as AIAgent  # <- switch import like this
 
 game = BattleshipGame(AIAgent(), Opponent())
 result = game.play()
@@ -27,7 +27,13 @@ import logging
 import os
 from typing import Any
 
-from AI_agent3 import AIAgent3
+import sys
+from pathlib import Path
+
+# Add the parent directory to Python path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from agents.AI_agent3 import AIAgent3
 
 logger = logging.getLogger(__name__)
 

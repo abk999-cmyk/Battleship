@@ -1,5 +1,11 @@
 import random
-from board import Board
+import sys
+from pathlib import Path
+
+# Add the parent directory to Python path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from core.board import Board
 
 class BaseNaiveAgent:
     def __init__(self, name):

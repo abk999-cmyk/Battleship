@@ -1,6 +1,6 @@
 ## Agent 3: Multi-Strategy + Meta-Learning + Opponent Modeling
 
-This document specifies `AI_agent3.py` (class `AIAgent3`) in full detail: state, algorithms, learning, and decision policy.
+This document specifies `agents/AI_agent3.py` (class `AIAgent3`) in full detail: state, algorithms, learning, and decision policy.
 
 ### Additions over Agent 2
 - Meta-weights `meta_weights = {density, neural, montecarlo, information_gain, opponent_model}` controlling linear blending of sub-grids.

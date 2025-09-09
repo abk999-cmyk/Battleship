@@ -17,11 +17,11 @@ from types import SimpleNamespace
 from collections import namedtuple
 from tqdm import tqdm
 
-from game import BattleshipGame
-from AI_agent3 import AIAgent3
-from AI_agent import AIPlayer       as aiplayer
-from AI_agent2 import AIPlayer2     as aiplayer2
-from AI_testing_agents import UltimateBattleshipAgent as ultimatebattleshipagent
+from ..core.game import BattleshipGame
+from ..agents.AI_agent3 import AIAgent3
+from ..agents.AI_agent import AIPlayer       as aiplayer
+from ..agents.AI_agent2 import AIPlayer2     as aiplayer2
+from ..agents.AI_testing_agents import UltimateBattleshipAgent as ultimatebattleshipagent
 
 # -----------------------------------------------------------------------------
 # Configurable parameters (overridden by CLI flags)

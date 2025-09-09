@@ -11,8 +11,8 @@ Usage:
 """
 
 import argparse, os, pickle, multiprocessing as mp, tqdm, numpy as np
-from game import BattleshipGame
-from AI_agent import AIPlayer
+from ..core.game import BattleshipGame
+from ..agents.AI_agent import AIPlayer
 
 
 # ---------------- utility -------------------------------------------------

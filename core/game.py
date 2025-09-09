@@ -1,5 +1,11 @@
-from player import HumanPlayer          # used elsewhere in the UI
-from AI_agent import AIPlayer           # legacy agent still referenced
+import sys
+from pathlib import Path
+
+# Add the parent directory to Python path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from core.player import HumanPlayer          # used elsewhere in the UI
+from agents.AI_agent import AIPlayer           # legacy agent still referenced
 
 class BattleshipGame:
     """Minimal, head-less game engine for AI-versus-AI training & GA runs."""

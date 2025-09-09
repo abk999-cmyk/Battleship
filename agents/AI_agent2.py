@@ -1,8 +1,14 @@
 import random
 from typing import List, Set, Tuple, Optional, Dict
+import sys
+from pathlib import Path
 import numpy as np
-from player import Player
-from board import SHIP_SIZES  # Assuming SHIP_SIZES is accessible from board.py or defined here
+
+# Add the parent directory to Python path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from core.player import Player
+from core.board import SHIP_SIZES  # Assuming SHIP_SIZES is accessible from board.py or defined here
 
 # ----------------------------------------------------------------------
 # Global constants

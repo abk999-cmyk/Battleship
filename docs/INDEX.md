@@ -22,5 +22,5 @@ This documentation covers the entire system in depth: architecture, agents, trai
 
 Quick links:
 - Agents: [Agent 2](agents/agent2.md) · [Agent 3](agents/agent3.md) · [Agent 4](agents/agent4.md)
-- Training: [Pipelines](training/pipelines.md) · [Heatmap CNN](nn/heatmap_model.md) · [RL Fine-tune](../rl_finetune.py)
+- Training: [Pipelines](training/pipelines.md) · [Heatmap CNN](nn/heatmap_model.md) · [RL Fine-tune](../training/rl_finetune.py)
 - Evaluation: [Metrics](evaluation/metrics.md) · [Dashboard](ui/dashboard_webapp.md)

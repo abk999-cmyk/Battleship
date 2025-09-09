@@ -12,8 +12,8 @@ from functools import partial
 from tqdm import tqdm
 from tensorflow.keras.models import load_model, save_model
 
-from game import BattleshipGame
-from AI_agent import AIPlayer
+from ..core.game import BattleshipGame
+from ..agents.AI_agent import AIPlayer
 
 
 # ---------------- helper --------------------------------------------------

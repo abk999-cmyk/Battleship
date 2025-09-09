@@ -2,7 +2,13 @@
 
 import numpy as np
 import random
-from ship import Ship
+import sys
+from pathlib import Path
+
+# Add the parent directory to Python path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from core.ship import Ship
 
 # Toggle runtime chatter. Set to False for silent automated runs.
 VERBOSE = False

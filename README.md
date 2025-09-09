@@ -22,14 +22,14 @@ A comprehensive environment for developing and testing AI agents for the classic
 ```bash
 git clone https://github.com/yourusername/battleship-ai.git
 cd battleship-ai
-python setup.py
+python scripts/setup.py
 ```
 The setup script installs dependencies, creates sample assets and generates a launch script.
 
 ## Usage
 Launch the dashboard:
 ```bash
-python battleship_dashboard.py
+python apps/battleship_dashboard.py
 ```
 
 ### Dashboard Tabs
@@ -40,9 +40,9 @@ python battleship_dashboard.py
 
 ### Training Models
 ```bash
-python train_heatmap.py
-python meta_learner.py
-python opponent_model.py
+python training/train_heatmap.py
+python agents/meta_learner.py
+python agents/opponent_model.py
 ```
 
 ## AI Agent Architecture

@@ -1,11 +1,17 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 import time, csv, os
+import sys
+from pathlib import Path
 from tqdm import tqdm
-from AI_agent import AIPlayer
-from AI_agent2 import AIPlayer2
-from AI_agent3 import AIAgent3
-from AI_testing_agents import UltimateBattleshipAgent, NaiveAgent6, NaiveAgent10
+
+# Add the parent directory to Python path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from agents.AI_agent import AIPlayer
+from agents.AI_agent2 import AIPlayer2
+from agents.AI_agent3 import AIAgent3
+from agents.AI_testing_agents import UltimateBattleshipAgent, NaiveAgent6, NaiveAgent10
 
 # Constants
 CELL_SIZE = 48

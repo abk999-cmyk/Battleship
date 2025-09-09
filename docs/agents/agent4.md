@@ -1,13 +1,13 @@
 ## Agent 4: GA-Optimized AIAgent3
 
-`AI_agent4.py` defines `AIAgent4`, a thin subclass of `AIAgent3` that automatically loads genetic-algorithm optimized meta-weights at initialization. No decision logic changes are introduced; only the blending weights are evolved.
+`agents/AI_agent4.py` defines `AIAgent4`, a thin subclass of `AIAgent3` that automatically loads genetic-algorithm optimized meta-weights at initialization. No decision logic changes are introduced; only the blending weights are evolved.
 
 ### Architecture
 - Inherits all mechanisms from Agent 3 (density, neural, Monte Carlo, information gain, opponent modeling, graph reasoning).
 - On `__init__`, calls `_load_ga_weights()` which attempts to read `models/ga_weights.json` and merges any recognized keys into `self.meta_weights`.
 
 ### GA integration
-- `ga_optimizer.py` evolves weight vectors over generations using a tournament-like GA:
+- `training/ga_optimizer.py` evolves weight vectors over generations using a tournament-like GA:
   - Chromosome: `{density, neural, montecarlo, information_gain, opponent_model}` ∈ [0,1]^5
   - Fitness: `100 * win_rate − avg_moves_to_win` measured against a set of fixed opponents (Agent1, Agent2, Ultimate).
   - Operators: uniform crossover per gene (rate 0.25), Gaussian mutation (σ≈0.12 with clamping to [0,1]), elitism (~10%).

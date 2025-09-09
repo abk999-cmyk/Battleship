@@ -15,5 +15,5 @@ This document aggregates how to report results and links to existing summaries.
 ### Reproduction checklist
 - venv with `requirements.txt`; verify TF 2.17.0.
 - Train supervised model (or use provided); optional RL fine-tune; evolve GA; confirm `models/ga_weights.json` present for Agent 4.
-- Run `main.py --games 1000` and store `testing_results.csv`.
+- Run `apps/main.py --games 1000` and store `testing_results.csv`.
 - Archive `data/` CSV/JSON logs; include `models/` hashes and training configs.

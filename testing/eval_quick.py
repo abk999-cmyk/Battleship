@@ -3,10 +3,10 @@ import csv
 import os
 from tqdm import tqdm
 
-from AI_agent4 import AIAgent4
-from AI_agent2 import AIPlayer2
-from AI_testing_agents import UltimateBattleshipAgent, NaiveAgent6
-from game import BattleshipGame
+from ..agents.AI_agent4 import AIAgent4
+from ..agents.AI_agent2 import AIPlayer2
+from ..agents.AI_testing_agents import UltimateBattleshipAgent, NaiveAgent6
+from ..core.game import BattleshipGame
 
 
 def run_eval(num_games: int, out_path: str):

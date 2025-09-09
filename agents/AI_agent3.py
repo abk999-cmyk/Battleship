@@ -8,8 +8,14 @@ import logging
 from typing import List, Set, Tuple, Dict, Optional, Any, Union
 from collections import defaultdict, Counter
 import warnings
-from player import Player
-from board import SHIP_SIZES
+import sys
+from pathlib import Path
+
+# Add the parent directory to Python path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from core.player import Player
+from core.board import SHIP_SIZES
 
 # ----------------------------------------------------------------------
 # Global constants

@@ -1,6 +1,6 @@
 ## Meta-Learner
 
-Describes the dense network in `meta_learner.py` that predicts strategy weight adjustments from a compact state feature vector.
+Describes the dense network in `agents/meta_learner.py` that predicts strategy weight adjustments from a compact state feature vector.
 
 ### Model
 - Input: `META_FEATURES=20` engineered scalars (e.g., progress, mode, remaining ships, min ship size, etc.).

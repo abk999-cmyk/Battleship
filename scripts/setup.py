@@ -214,13 +214,13 @@ def create_launch_script():
         script_name = "launch_battleship.bat"
         script_content = "@echo off\n" \
                          f"cd {BASE_DIR}\n" \
-                         f"python battleship_dashboard.py\n" \
+                         f"python apps/battleship_dashboard.py\n" \
                          "pause\n"
     else:
         script_name = "launch_battleship.sh"
         script_content = "#!/bin/bash\n" \
                          f"cd {BASE_DIR}\n" \
-                         f"python3 battleship_dashboard.py\n"
+                         f"python3 apps/battleship_dashboard.py\n"
 
     script_path = BASE_DIR / script_name
     with open(script_path, 'w') as f:

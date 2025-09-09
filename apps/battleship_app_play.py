@@ -1,13 +1,18 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 import time, csv, os, uuid, pathlib, threading
+import sys
 from pathlib import Path
 try:
     import pandas as pd
 except ImportError:
     pd = None
-from player import HumanPlayer
-from AI_agent2 import AIPlayer2
+
+# Add the parent directory to Python path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from core.player import HumanPlayer
+from agents.AI_agent2 import AIPlayer2
 
 # ---- Global settings --------------------------------------------------
 DATA_DIR = Path(__file__).with_suffix('').parent / "data"

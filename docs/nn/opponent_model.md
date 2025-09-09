@@ -1,6 +1,6 @@
 ## Opponent Modeling Network
 
-Implements a CNN (see `opponent_model.py`) that predicts opponent ship placement heatmaps given multi-channel board state including engineered planes for opponent tendency and board edges.
+Implements a CNN (see `agents/opponent_model.py`) that predicts opponent ship placement heatmaps given multi-channel board state including engineered planes for opponent tendency and board edges.
 
 ### Architecture
 - Input: (10,10,5) planes = [miss, hit, unknown, opponent_tendency, edge].
@@ -13,7 +13,7 @@ Implements a CNN (see `opponent_model.py`) that predicts opponent ship placement
 - Train/val split 80/20; callbacks: EarlyStopping, ModelCheckpoint, TensorBoard. Saved at `models/opponent_model.h5` with history in `models/opponent_model_history.pkl`.
 
 ### Usage
-- Train: `python opponent_model.py` (prompts for retrain). Visualize predictions saved to `logs/opponent_model_predictions.png`.
+- Train: `python agents/opponent_model.py` (prompts for retrain). Visualize predictions saved to `logs/opponent_model_predictions.png`.
 - Profiles persisted at `models/opponent_profiles.pkl` store behavioural frequencies and are updated post-game via helper APIs.
 
 ### Integration points

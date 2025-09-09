@@ -1,6 +1,6 @@
 ## Game Environment and Mechanics
 
-This document specifies the Battleship environment as implemented in `board.py`, `ship.py`, `player.py`, and the headless engine `game.py`.
+This document specifies the Battleship environment as implemented in `core/board.py`, `core/ship.py`, `core/player.py`, and the headless engine `core/game.py`.
 
 ### Board
 - Size: 10×10 (configurable in `Board(size=10)`).
@@ -30,4 +30,4 @@ This document specifies the Battleship environment as implemented in `board.py`,
 - `result_grid` is agent-side belief state separate from the true board; agents must keep it consistent with attacks.
 
 ### Telemetry
-- Apps write CSV logs per move and aggregate summaries to `data/` and `logs/`. See `battleship_dashboard.py` for detailed schema.
+- Apps write CSV logs per move and aggregate summaries to `data/` and `logs/`. See `apps/battleship_dashboard.py` for detailed schema.

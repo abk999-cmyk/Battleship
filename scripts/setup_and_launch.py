@@ -344,11 +344,11 @@ class BattleshipSetup:
             
             # Test if main files exist
             critical_files = [
-                "battleship_dashboard.py",
-                "game.py", 
-                "board.py",
-                "player.py",
-                "AI_agent.py"
+                "apps/battleship_dashboard.py",
+                "core/game.py", 
+                "core/board.py",
+                "core/player.py",
+                "agents/AI_agent.py"
             ]
             
             print("   Checking critical files...")
@@ -376,10 +376,10 @@ class BattleshipSetup:
         print("🚀 Launching Battleship AI Research Dashboard...")
         
         try:
-            dashboard_script = self.base_dir / "battleship_dashboard.py"
+            dashboard_script = self.base_dir / "apps" / "battleship_dashboard.py"
             if not dashboard_script.exists():
-                self.logger.error("battleship_dashboard.py not found")
-                print("❌ battleship_dashboard.py not found")
+                self.logger.error("apps/battleship_dashboard.py not found")
+                print("❌ apps/battleship_dashboard.py not found")
                 return False
             
             venv_python = self.get_venv_python()

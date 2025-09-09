@@ -3,17 +3,21 @@ import argparse
 import os
 import time
 import csv
+import sys
+from pathlib import Path
 from tqdm import tqdm
 
+# Add the parent directory to Python path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from AI_agent2 import AIPlayer2
-from AI_agent4 import AIAgent4
-from AI_testing_agents import (
+from agents.AI_agent2 import AIPlayer2
+from agents.AI_agent4 import AIAgent4
+from agents.AI_testing_agents import (
     NaiveAgent1, NaiveAgent2, NaiveAgent3, NaiveAgent4, NaiveAgent5,
     NaiveAgent6, NaiveAgent7, NaiveAgent8, NaiveAgent9, NaiveAgent10,
     UltimateBattleshipAgent
 )
-from game import BattleshipGame
+from core.game import BattleshipGame
 
 NUM_GAMES_PER_AGENT = 1000
 

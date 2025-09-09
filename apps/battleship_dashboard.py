@@ -27,6 +27,10 @@ import random
 import uuid
 import sys
 import traceback
+from pathlib import Path
+
+# Add the parent directory to Python path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
 # Set up matplotlib with thread-safe backend
 import matplotlib
@@ -35,11 +39,11 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 # Import AI components - only import what we use
-from player import HumanPlayer
-from board import Board
-from AI_agent import AIPlayer
-from AI_agent2 import AIPlayer2
-from AI_agent4 import AIAgent4
+from core.player import HumanPlayer
+from core.board import Board
+from agents.AI_agent import AIPlayer
+from agents.AI_agent2 import AIPlayer2
+from agents.AI_agent4 import AIAgent4
 
 # Ship sizes
 SHIP_SIZES = [5, 4, 3, 3, 2]  # Directly define here instead of importing
@@ -48,14 +52,14 @@ SHIP_SIZES = [5, 4, 3, 3, 2]  # Directly define here instead of importing
 HAS_AI_AGENT3 = False
 AIAgent3 = None  # Define outside try/except to avoid undefined variable warnings
 try:
-    from AI_agent3 import AIAgent3
+    from agents.AI_agent3 import AIAgent3
     HAS_AI_AGENT3 = True
     print("AI_agent3 imported successfully")
 except ImportError:
     print("AI_agent3 not available. Advanced AI features will be disabled.")
 
 # Import testing agents
-from AI_testing_agents import (
+from agents.AI_testing_agents import (
     NaiveAgent1, NaiveAgent2, NaiveAgent3, NaiveAgent4,
     NaiveAgent5, NaiveAgent6, NaiveAgent7, NaiveAgent8,
     NaiveAgent9, NaiveAgent10, UltimateBattleshipAgent
