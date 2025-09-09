@@ -1,0 +1,10 @@
+{
+  "game_id": "23469133",
+  "player1": "NaiveAgent1",
+  "player2": "AIAgent4",
+  "winner": "AIAgent4",
+  "winner_idx": 2,
+  "move_count": 60,
+  "duration": 13.40849494934082,
+  "timestamp": "2025-09-08T20:52:47.189731"
+}
