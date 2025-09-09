@@ -36,7 +36,7 @@ class BattleshipSetup:
     """Complete setup and launch manager for Battleship AI Research Platform"""
     
     def __init__(self):
-        self.base_dir = Path(__file__).parent.absolute()
+        self.base_dir = Path(__file__).parent.parent.absolute()  # Go up one level from scripts/
         self.venv_name = ".venv39"
         self.venv_path = self.base_dir / self.venv_name
         self.logs_dir = self.base_dir / "logs"
@@ -53,7 +53,7 @@ class BattleshipSetup:
         # System info
         self.system = platform.system()
         self.is_windows = self.system == "Windows"
-        self.python_executable = "python" if self.is_windows else "python3"
+        self.python_executable = "python" if self.is_windows else "python3.9"
         
         self.logger.info(f"Initializing Battleship setup on {self.system}")
         

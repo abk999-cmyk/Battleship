@@ -12,8 +12,14 @@ from functools import partial
 from tqdm import tqdm
 from tensorflow.keras.models import load_model, save_model
 
-from ..core.game import BattleshipGame
-from ..agents.AI_agent import AIPlayer
+import sys
+from pathlib import Path
+
+# Add the parent directory to Python path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from core.game import BattleshipGame
+from agents.AI_agent import AIPlayer
 
 
 # ---------------- helper --------------------------------------------------

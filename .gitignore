@@ -15,6 +15,14 @@ ENV/
 logs/
 *.log
 
+# Generated data and models
+**/data/
+**/models/
+*.pkl
+*.h5
+*.json
+*.csv
+
 # IDE
 .vscode/
 .idea/
