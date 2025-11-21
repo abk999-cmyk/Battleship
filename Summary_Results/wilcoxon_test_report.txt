@@ -1,0 +1,80 @@
+====================================================================================================
+WILCOXON SIGNED-RANK TEST RESULTS
+====================================================================================================
+
+Analysis Date: 2025-11-11 18:01:38
+Data File: /Users/abhinav/Desktop/Personal Projects/Battleship/results/ablation_study_20251020_171708/agent4_full_vs_others.csv
+Total Games Analyzed: 500
+
+TEST DESCRIPTION:
+The Wilcoxon signed-rank test is a non-parametric statistical test used to
+compare paired samples. It tests whether the median difference between pairs
+is zero, making it suitable for comparing win rates between agents.
+
+INTERPRETATION:
+- p-value < 0.01: Very strong evidence of difference (highly significant)
+- p-value < 0.05: Strong evidence of difference (significant)
+- p-value >= 0.05: Insufficient evidence to reject null hypothesis
+
+RESULTS:
+----------------------------------------------------------------------------------------------------
+
+Opponent: AIAgent4-Neural-Only
+  Total Games: 100
+  AIAgent4-Full Wins: 86 (86.00%)
+  AIAgent4-Neural-Only Wins: 14 (14.00%)
+  Wilcoxon Statistic: 707.0
+  P-Value: 0.000000
+  Significant at α=0.05: True
+  Significant at α=0.01: True
+  Average Moves to Win (AIAgent4-Full): 42.12
+  
+----------------------------------------------------------------------------------------------------
+
+Opponent: AIAgent4-InfoGain-Only
+  Total Games: 100
+  AIAgent4-Full Wins: 66 (66.00%)
+  AIAgent4-InfoGain-Only Wins: 34 (34.00%)
+  Wilcoxon Statistic: 1717.0
+  P-Value: 0.001374
+  Significant at α=0.05: True
+  Significant at α=0.01: True
+  Average Moves to Win (AIAgent4-Full): 39.05
+ 
+----------------------------------------------------------------------------------------------------
+
+Opponent: AIAgent4-Density-Only
+  Total Games: 100
+  AIAgent4-Full Wins: 61 (61.00%)
+  AIAgent4-Density-Only Wins: 39 (39.00%)
+  Wilcoxon Statistic: 1969.5
+  P-Value: 0.027807
+  Significant at α=0.05: True
+  Significant at α=0.01: False
+  Average Moves to Win (AIAgent4-Full): 39.93
+  
+----------------------------------------------------------------------------------------------------
+
+Opponent: AIAgent3
+  Total Games: 100
+  AIAgent4-Full Wins: 55 (55.00%)
+  AIAgent3 Wins: 45 (45.00%)
+  Wilcoxon Statistic: 2272.5
+  P-Value: 0.317311
+  Significant at α=0.05: False
+  Significant at α=0.01: False
+  Average Moves to Win (AIAgent4-Full): 39.73
+ 
+----------------------------------------------------------------------------------------------------
+
+Opponent: AIAgent4-MonteCarlo-Only
+  Total Games: 100
+  AIAgent4-Full Wins: 52 (52.00%)
+  AIAgent4-MonteCarlo-Only Wins: 48 (48.00%)
+  Wilcoxon Statistic: 2424.0
+  P-Value: 0.689157
+  Significant at α=0.05: False
+  Significant at α=0.01: False
+  Average Moves to Win (AIAgent4-Full): 37.48
+  
+----------------------------------------------------------------------------------------------------

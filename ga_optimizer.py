@@ -12,6 +12,7 @@
 #     $ python ga_optimizer.py --gens 60 --pop 50 --cpus 8
 # -----------------------------------------------------------------------------
 import argparse, json, os, random, math, time, gc, multiprocessing as mp
+import numpy as np
 from pathlib import Path
 from types import SimpleNamespace
 from collections import namedtuple
@@ -22,6 +23,10 @@ from AI_agent3 import AIAgent3
 from AI_agent import AIPlayer       as aiplayer
 from AI_agent2 import AIPlayer2     as aiplayer2
 from AI_testing_agents import UltimateBattleshipAgent as ultimatebattleshipagent
+
+# Set seed for reproducibility
+random.seed(1337)
+np.random.seed(1337)
 
 # -----------------------------------------------------------------------------
 # Configurable parameters (overridden by CLI flags)

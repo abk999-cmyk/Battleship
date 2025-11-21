@@ -38,6 +38,15 @@ python main.py --games 1000
 python main.py --watch --opp ultimate --delay 0.3
 ```
 
+### Ablation Study
+```bash
+python scripts/ablation_study.py --games 1    # Test run
+python scripts/ablation_study.py --games 100  # Full evaluation
+```
+- Tests AIAgent3 and AIAgent4 variants (Full, Neural-Only, Density-Only, MonteCarlo-Only, InfoGain-Only)
+- Each agent plays against all 10 naive agents
+- Results saved to `results/ablation_study_TIMESTAMP/`
+
 ### Dashboard
 ```bash
 python battleship_dashboard.py

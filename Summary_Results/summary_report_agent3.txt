@@ -1,0 +1,46 @@
+================================================================================
+AIAGENT3 VS ABLATED AIAGENT4 VARIANTS - COMPARISON REPORT
+================================================================================
+Date: 2025-11-05 15:40:44
+Games per matchup: 100
+Random seed: 1337
+Total games: 400
+
+================================================================================
+HEAD-TO-HEAD RESULTS: AIAgent3 vs AIAgent4 Ablations
+================================================================================
+
+Opponent                        Agent3 Wins   Opp Wins   Win Rate    Avg Moves
+--------------------------------------------------------------------------------
+AIAgent4-Density-Only                    50         50     50.00%       40.44
+AIAgent4-InfoGain-Only                   54         46     54.00%       39.98
+AIAgent4-MonteCarlo-Only                 44         56     44.00%       40.33
+AIAgent4-Neural-Only                     85         15     85.00%       43.44
+
+================================================================================
+OVERALL SUMMARY
+================================================================================
+
+AIAgent3 Overall Performance:
+  Total Games:          400
+  Total Wins:           233
+  Total Losses:         167
+  Overall Win Rate:     58.25%
+  Overall Avg Moves:    41.05
+
+================================================================================
+PERFORMANCE ANALYSIS
+================================================================================
+
+Best Matchup (highest win rate):
+  vs AIAgent4-Neural-Only: 85.00% win rate
+
+Worst Matchup (lowest win rate):
+  vs AIAgent4-MonteCarlo-Only: 44.00% win rate
+
+Fastest Games (fewest moves):
+  vs AIAgent4-InfoGain-Only: 39.98 avg moves
+
+Slowest Games (most moves):
+  vs AIAgent4-Neural-Only: 43.44 avg moves
+

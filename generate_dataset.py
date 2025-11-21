@@ -48,6 +48,10 @@ def one_game(_):
 
 # ---------------- main ----------------------------------------------------
 def main(total_games: int, workers: int, out_path: str):
+    # Set seed for reproducibility
+    import random
+    random.seed(1337)
+    np.random.seed(1337)
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with mp.Pool(workers) as pool, open(out_path, "wb") as fout:
         for result in tqdm.tqdm(pool.imap_unordered(one_game, range(total_games)),

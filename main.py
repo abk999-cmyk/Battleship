@@ -3,8 +3,13 @@ import argparse
 import os
 import time
 import csv
+import random
+import numpy as np
 from tqdm import tqdm
 
+# Set seed for reproducibility
+random.seed(1337)
+np.random.seed(1337)
 
 from AI_agent2 import AIPlayer2
 from AI_agent4 import AIAgent4

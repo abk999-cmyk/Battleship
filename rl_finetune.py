@@ -7,13 +7,18 @@ rl_finetune.py  –  Multi‑process REINFORCE fine‑tuning
 • Tqdm progress bar shows overall status
 """
 
-import argparse, os, multiprocessing as mp, numpy as np, tensorflow as tf
+import argparse, os, multiprocessing as mp, numpy as np, tensorflow as tf, random
 from functools import partial
 from tqdm import tqdm
 from tensorflow.keras.models import load_model, save_model
 
 from game import BattleshipGame
 from AI_agent import AIPlayer
+
+# Set seed for reproducibility
+random.seed(1337)
+np.random.seed(1337)
+tf.random.set_seed(1337)
 
 
 # ---------------- helper --------------------------------------------------

@@ -1,6 +1,11 @@
-import pickle, numpy as np, tensorflow as tf, tqdm, os
+import pickle, numpy as np, tensorflow as tf, tqdm, os, random
 from tqdm.keras import TqdmCallback
 from tensorflow.keras import layers, models, optimizers, losses
+
+# Set seed for reproducibility
+random.seed(1337)
+np.random.seed(1337)
+tf.random.set_seed(1337)
 
 DATA = "data/battleship_supervised.pkl"
 # The dataset file is a stream of many pickled (state, label) samples.

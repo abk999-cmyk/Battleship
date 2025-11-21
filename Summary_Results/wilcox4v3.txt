@@ -1,0 +1,29 @@
+================================================================================
+WILCOXON SIGNED-RANK TEST RESULTS
+AIAgent4 vs AIAgent3 Matchup Analysis
+================================================================================
+
+Analysis Date: 2025-11-11 20:30:39
+Data Source: /Users/abhinav/Desktop/Personal Projects/Battleship/data/all_moves.csv
+Total Games Analyzed: 1000
+
+PERFORMANCE STATISTICS:
+  AIAgent4 Wins: 532 (53.20%)
+  AIAgent3 Wins: 468 (46.80%)
+  Win Rate Difference: 6.40%
+
+EFFICIENCY METRICS:
+  AIAgent4 Avg Moves to Win: 39.83
+
+WILCOXON SIGNED-RANK TEST:
+  Test Statistic (W): 234234.00
+  P-Value: 0.042985
+  Significance: * SIGNIFICANT (p < 0.05)
+  
+
+SIGNIFICANCE LEVELS:
+  p < 0.001: Highly significant (***)
+  p < 0.01:  Very significant (**)
+  p < 0.05:  Significant (*)
+  p >= 0.05: Not significant
+
