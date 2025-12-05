@@ -1,0 +1,355 @@
+{
+  "completed_runs": 20,
+  "total_runs": 20,
+  "last_completed": 20,
+  "results": [
+    {
+      "run_number": 1,
+      "seed": 1338,
+      "pop_size": 20,
+      "generations": 50,
+      "elapsed_time_seconds": 11492.507025957108,
+      "timestamp": "2025-11-21T20:29:25.260061",
+      "weights": {
+        "density": 0.4002920169570069,
+        "neural": 0.021564678240627702,
+        "montecarlo": 1.0,
+        "information_gain": 0.3544078360654245
+      },
+      "win_rate": 0.8,
+      "avg_moves": 77.75,
+      "fitness": 2.25
+    },
+    {
+      "run_number": 2,
+      "seed": 1339,
+      "pop_size": 20,
+      "generations": 50,
+      "elapsed_time_seconds": 7571.80296087265,
+      "timestamp": "2025-11-21T22:35:37.063581",
+      "weights": {
+        "density": 0.5345284070098187,
+        "neural": 1.0,
+        "montecarlo": 0.6325599884874282,
+        "information_gain": 0.08393825964662088
+      },
+      "win_rate": 0.9,
+      "avg_moves": 81.66666666666667,
+      "fitness": 8.333333333333329
+    },
+    {
+      "run_number": 3,
+      "seed": 1340,
+      "pop_size": 20,
+      "generations": 50,
+      "elapsed_time_seconds": 7334.009264945984,
+      "timestamp": "2025-11-22T00:37:51.074073",
+      "weights": {
+        "density": 0.4735694544318672,
+        "neural": 0.6098990028293001,
+        "montecarlo": 1.0,
+        "information_gain": 0.12725001734752092
+      },
+      "win_rate": 1.0,
+      "avg_moves": 75.6,
+      "fitness": 24.400000000000006
+    },
+    {
+      "run_number": 4,
+      "seed": 1341,
+      "pop_size": 20,
+      "generations": 50,
+      "elapsed_time_seconds": 7666.070574998856,
+      "timestamp": "2025-11-22T02:45:37.146917",
+      "weights": {
+        "density": 0.5354922361630603,
+        "neural": 0.2639100803719859,
+        "montecarlo": 0.30306481074735114,
+        "information_gain": 0.09121059197531634
+      },
+      "win_rate": 0.9,
+      "avg_moves": 78.55555555555556,
+      "fitness": 11.444444444444443
+    },
+    {
+      "run_number": 5,
+      "seed": 1342,
+      "pop_size": 20,
+      "generations": 50,
+      "elapsed_time_seconds": 7339.107474088669,
+      "timestamp": "2025-11-22T04:47:56.255674",
+      "weights": {
+        "density": 0.9396557514243693,
+        "neural": 0.6967406342599567,
+        "montecarlo": 0.4500368163146476,
+        "information_gain": 0.43622107658476483
+      },
+      "win_rate": 0.8,
+      "avg_moves": 75.5,
+      "fitness": 4.5
+    },
+    {
+      "run_number": 6,
+      "seed": 1343,
+      "pop_size": 20,
+      "generations": 50,
+      "elapsed_time_seconds": 7147.375246047974,
+      "timestamp": "2025-11-22T06:47:03.631474",
+      "weights": {
+        "density": 0.34915294162429694,
+        "neural": 0.7794458605575518,
+        "montecarlo": 0.6224492262558051,
+        "information_gain": 0.13898020148462914
+      },
+      "win_rate": 0.7,
+      "avg_moves": 73.57142857142857,
+      "fitness": -3.5714285714285694
+    },
+    {
+      "run_number": 7,
+      "seed": 1344,
+      "pop_size": 20,
+      "generations": 50,
+      "elapsed_time_seconds": 7155.147921800613,
+      "timestamp": "2025-11-22T08:46:18.780122",
+      "weights": {
+        "density": 0.27338438306665813,
+        "neural": 0.15368220282508943,
+        "montecarlo": 0.8675642688591395,
+        "information_gain": 0.0
+      },
+      "win_rate": 0.8,
+      "avg_moves": 71.5,
+      "fitness": 8.5
+    },
+    {
+      "run_number": 8,
+      "seed": 1345,
+      "pop_size": 20,
+      "generations": 50,
+      "elapsed_time_seconds": 7270.381826877594,
+      "timestamp": "2025-11-22T10:47:29.163721",
+      "weights": {
+        "density": 1.0,
+        "neural": 0.5999434308879565,
+        "montecarlo": 0.9006824122832658,
+        "information_gain": 0.8279309270761896
+      },
+      "win_rate": 0.8,
+      "avg_moves": 75.75,
+      "fitness": 4.25
+    },
+    {
+      "run_number": 9,
+      "seed": 1346,
+      "pop_size": 20,
+      "generations": 50,
+      "elapsed_time_seconds": 7312.745806932449,
+      "timestamp": "2025-11-22T12:49:21.910919",
+      "weights": {
+        "density": 0.0,
+        "neural": 0.97912984026908,
+        "montecarlo": 0.4140854475850645,
+        "information_gain": 0.4771533852088477
+      },
+      "win_rate": 0.7,
+      "avg_moves": 76.14285714285714,
+      "fitness": -6.142857142857139
+    },
+    {
+      "run_number": 10,
+      "seed": 1347,
+      "pop_size": 20,
+      "generations": 50,
+      "elapsed_time_seconds": 7310.169313669205,
+      "timestamp": "2025-11-22T14:51:12.081640",
+      "weights": {
+        "density": 0.9275835863269624,
+        "neural": 0.9609292624999158,
+        "montecarlo": 1.0,
+        "information_gain": 0.0
+      },
+      "win_rate": 0.9,
+      "avg_moves": 79.0,
+      "fitness": 11.0
+    },
+    {
+      "run_number": 11,
+      "seed": 1348,
+      "pop_size": 20,
+      "generations": 50,
+      "elapsed_time_seconds": 7369.238645076752,
+      "timestamp": "2025-11-22T16:54:01.322063",
+      "weights": {
+        "density": 0.0,
+        "neural": 0.3587888330151973,
+        "montecarlo": 0.542928457876311,
+        "information_gain": 0.7055623308383814
+      },
+      "win_rate": 0.8,
+      "avg_moves": 71.5,
+      "fitness": 8.5
+    },
+    {
+      "run_number": 12,
+      "seed": 1349,
+      "pop_size": 20,
+      "generations": 50,
+      "elapsed_time_seconds": 7248.623726129532,
+      "timestamp": "2025-11-22T18:54:49.947031",
+      "weights": {
+        "density": 0.8492469048279684,
+        "neural": 0.2921536818115968,
+        "montecarlo": 1.0,
+        "information_gain": 0.0
+      },
+      "win_rate": 0.8,
+      "avg_moves": 82.25,
+      "fitness": -2.25
+    },
+    {
+      "run_number": 13,
+      "seed": 1350,
+      "pop_size": 20,
+      "generations": 50,
+      "elapsed_time_seconds": 7351.273380041122,
+      "timestamp": "2025-11-22T20:57:21.222831",
+      "weights": {
+        "density": 0.8817944704445773,
+        "neural": 0.9811353362169278,
+        "montecarlo": 0.8943572465454468,
+        "information_gain": 0.3775855131892676
+      },
+      "win_rate": 0.8,
+      "avg_moves": 80.75,
+      "fitness": -0.75
+    },
+    {
+      "run_number": 14,
+      "seed": 1351,
+      "pop_size": 20,
+      "generations": 50,
+      "elapsed_time_seconds": 7665.73050904274,
+      "timestamp": "2025-11-22T23:05:06.954955",
+      "weights": {
+        "density": 0.5396601911651557,
+        "neural": 0.5658632351335596,
+        "montecarlo": 0.9355071812481465,
+        "information_gain": 0.2613903232862276
+      },
+      "win_rate": 0.9,
+      "avg_moves": 81.22222222222223,
+      "fitness": 8.777777777777771
+    },
+    {
+      "run_number": 15,
+      "seed": 1352,
+      "pop_size": 20,
+      "generations": 50,
+      "elapsed_time_seconds": 7186.074862957001,
+      "timestamp": "2025-11-23T01:04:53.031615",
+      "weights": {
+        "density": 0.5956671402977918,
+        "neural": 0.43928500477446547,
+        "montecarlo": 1.0,
+        "information_gain": 0.0
+      },
+      "win_rate": 0.8,
+      "avg_moves": 73.25,
+      "fitness": 6.75
+    },
+    {
+      "run_number": 16,
+      "seed": 1353,
+      "pop_size": 20,
+      "generations": 50,
+      "elapsed_time_seconds": 7235.779368162155,
+      "timestamp": "2025-11-23T03:05:28.812347",
+      "weights": {
+        "density": 1.0,
+        "neural": 1.0,
+        "montecarlo": 0.5267610732292134,
+        "information_gain": 0.0
+      },
+      "win_rate": 0.9,
+      "avg_moves": 83.22222222222223,
+      "fitness": 6.7777777777777715
+    },
+    {
+      "run_number": 17,
+      "seed": 1354,
+      "pop_size": 20,
+      "generations": 50,
+      "elapsed_time_seconds": 7291.905917167664,
+      "timestamp": "2025-11-23T05:07:00.719758",
+      "weights": {
+        "density": 0.7619790610427535,
+        "neural": 0.46444047049583304,
+        "montecarlo": 1.0,
+        "information_gain": 0.0
+      },
+      "win_rate": 0.9,
+      "avg_moves": 83.0,
+      "fitness": 7.0
+    },
+    {
+      "run_number": 18,
+      "seed": 1355,
+      "pop_size": 20,
+      "generations": 50,
+      "elapsed_time_seconds": 7134.140350103378,
+      "timestamp": "2025-11-23T07:05:54.861015",
+      "weights": {
+        "density": 0.7397204520839297,
+        "neural": 1.0,
+        "montecarlo": 0.9207846387689689,
+        "information_gain": 0.03087740919609272
+      },
+      "win_rate": 0.8,
+      "avg_moves": 81.75,
+      "fitness": -1.75
+    },
+    {
+      "run_number": 19,
+      "seed": 1356,
+      "pop_size": 20,
+      "generations": 50,
+      "elapsed_time_seconds": 7247.222080230713,
+      "timestamp": "2025-11-23T09:06:42.084127",
+      "weights": {
+        "density": 0.08621135747490809,
+        "neural": 0.2902720708533711,
+        "montecarlo": 1.0,
+        "information_gain": 0.0
+      },
+      "win_rate": 0.9,
+      "avg_moves": 77.0,
+      "fitness": 13.0
+    },
+    {
+      "run_number": 20,
+      "seed": 1357,
+      "pop_size": 20,
+      "generations": 50,
+      "elapsed_time_seconds": 7268.7553198337555,
+      "timestamp": "2025-11-23T11:07:50.841053",
+      "weights": {
+        "density": 0.5344791182720369,
+        "neural": 0.0,
+        "montecarlo": 0.6722085400625987,
+        "information_gain": 0.9799189716289227
+      },
+      "win_rate": 0.7,
+      "avg_moves": 83.0,
+      "fitness": -13.0
+    }
+  ]
+}
+//old run weights : seed 42 pop size 40 generations 50 ; win rate - 1.0; avg moves: 80.6; fitness: 30.0
+{
+  "density": 0.4904895891191308,
+  "neural": 0.6021993763688016,
+  "montecarlo": 0.9711647059426145,
+  "information_gain": 0.0,
+  "opponent_model": 0.5145790072743006
+}

@@ -1,0 +1,131 @@
+================================================================================
+20 GA RUNS - COMPREHENSIVE ANALYSIS SUMMARY
+================================================================================
+Generated: 2025-11-23 12:14:27
+
+--------------------------------------------------------------------------------
+OVERALL PERFORMANCE ACROSS 20 RUNS
+--------------------------------------------------------------------------------
+Win Rate - Mean: 0.8300, Std: 0.0781
+Win Rate - Min: 0.7000, Max: 1.0000
+Avg Moves - Mean: 78.10, Std: 3.81
+Avg Moves - Min: 71.50, Max: 83.22
+
+--------------------------------------------------------------------------------
+TOP 5 PERFORMERS (BY WIN RATE)
+--------------------------------------------------------------------------------
+
+1. Run 3
+   Win Rate: 1.0000
+   Avg Moves: 75.60
+   Fitness: 24.40
+   Weights:
+     - density: 0.4736
+     - neural: 0.6699
+     - montecarlo: 1.0000
+     - information_gain: 0.1273
+
+2. Run 2
+   Win Rate: 0.9000
+   Avg Moves: 81.67
+   Fitness: 8.33
+   Weights:
+     - density: 0.5345
+     - neural: 1.0000
+     - montecarlo: 0.6326
+     - information_gain: 0.0839
+
+3. Run 4
+   Win Rate: 0.9000
+   Avg Moves: 78.56
+   Fitness: 11.44
+   Weights:
+     - density: 0.5355
+     - neural: 0.2639
+     - montecarlo: 0.3031
+     - information_gain: 0.0912
+
+4. Run 10
+   Win Rate: 0.9000
+   Avg Moves: 79.00
+   Fitness: 11.00
+   Weights:
+     - density: 0.9276
+     - neural: 0.9609
+     - montecarlo: 1.0000
+     - information_gain: 0.0000
+
+5. Run 14
+   Win Rate: 0.9000
+   Avg Moves: 81.22
+   Fitness: 8.78
+   Weights:
+     - density: 0.5397
+     - neural: 0.5659
+     - montecarlo: 0.9355
+     - information_gain: 0.2614
+
+--------------------------------------------------------------------------------
+WEIGHT STATISTICS ACROSS ALL RUNS
+--------------------------------------------------------------------------------
+
+DENSITY
+  Mean:   0.5711
+  Std:    0.3114
+  Range:  [0.0000, 1.0000]
+  Median: 0.5376
+
+NEURAL
+  Mean:   0.5759
+  Std:    0.3343
+  Range:  [0.0000, 1.0000]
+  Median: 0.5829
+
+MONTECARLO
+  Mean:   0.7841
+  Std:    0.2309
+  Range:  [0.3031, 1.0000]
+  Median: 0.8975
+
+INFORMATION_GAIN
+  Mean:   0.2446
+  Std:    0.2961
+  Range:  [0.0000, 0.9799]
+  Median: 0.1092
+
+--------------------------------------------------------------------------------
+WEIGHT CORRELATIONS WITH WIN RATE
+--------------------------------------------------------------------------------
+density             : r= 0.2102, p=0.3738
+neural              : r= 0.1286, p=0.5890
+montecarlo          : r= 0.2729, p=0.2444
+information_gain    : r=-0.5131, p=0.0207 ***
+
+--------------------------------------------------------------------------------
+WEIGHT CORRELATIONS WITH AVERAGE MOVES
+--------------------------------------------------------------------------------
+density             : r= 0.5156, p=0.0200 ***
+neural              : r= 0.1967, p=0.4060
+montecarlo          : r= 0.1124, p=0.6370
+information_gain    : r=-0.1182, p=0.6197
+
+--------------------------------------------------------------------------------
+WEIGHT DIVERSITY ANALYSIS
+--------------------------------------------------------------------------------
+Coefficient of Variation (CV = Std/Mean) for each weight:
+  density             : CV=0.5452 (High diversity)
+  neural              : CV=0.5805 (High diversity)
+  montecarlo          : CV=0.2945 (Moderate diversity)
+  information_gain    : CV=1.2103 (High diversity)
+
+--------------------------------------------------------------------------------
+KEY FINDINGS
+--------------------------------------------------------------------------------
+1. Most consistent weight: montecarlo (Std=0.2309)
+2. Most variable weight: information_gain (Std=0.2961)
+3. Strongest positive correlation with win rate: montecarlo (r=0.2729)
+4. Strongest negative correlation with avg moves: information_gain (r=-0.1182)
+
+================================================================================
+END OF REPORT
+================================================================================

@@ -1,0 +1,11 @@
+{
+  "total_runs": 20,
+  "successful_runs": 20,
+  "total_time_hours": 41.83280288861857,
+  "configuration": {
+    "pop_size": 20,
+    "generations": 50,
+    "cpus": 12
+  },
+  "completion_timestamp": "2025-11-23T11:07:50.843425"
+}

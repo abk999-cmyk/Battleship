@@ -20,9 +20,8 @@ from tqdm import tqdm
 
 from game import BattleshipGame
 from AI_agent3 import AIAgent3
-from AI_agent import AIPlayer       as aiplayer
 from AI_agent2 import AIPlayer2     as aiplayer2
-from AI_testing_agents import UltimateBattleshipAgent as ultimatebattleshipagent
+import logging
 
 # Set seed for reproducibility
 random.seed(1337)
@@ -31,8 +30,8 @@ np.random.seed(1337)
 # -----------------------------------------------------------------------------
 # Configurable parameters (overridden by CLI flags)
 # -----------------------------------------------------------------------------
-OPPONENTS          = [aiplayer, aiplayer2, ultimatebattleshipagent]
-GAMES_PER_OPP      = 5            # ⟵ each chromosome plays 5× each opponent
+OPPONENTS          = [AIAgent3]
+GAMES_PER_OPP      = 40            # ⟵ each chromosome plays 100× each opponent
 MUTATION_STD       = 0.12         # σ for Gaussian mutation (per‑gene)
 CROSSOVER_RATE     = 0.25         # probability of uniform crossover per gene
 ELITISM_FRACTION   = 0.1          # keep top‑N genomes unchanged each gen
@@ -49,9 +48,13 @@ Chrom = namedtuple('Chrom', META_KEYS + ['fitness'])
 # -----------------------------------------------------------------------------
 
 def _evaluate(args):
-    """Evaluate *one* chromosome; returns (fitness, weights_dict)."""
+    """Evaluate *one* chromosome; returns (fitness, weights_dict, win_rate, avg_moves)."""
     weights, seed = args
     random.seed(seed)
+    
+    # Disable AIAgent3 logging to prevent memory overload
+    logging.getLogger('AI_Agent3').setLevel(logging.CRITICAL)
+    
     games  = 0
     wins   = 0
     moves  = 0
@@ -60,7 +63,16 @@ def _evaluate(args):
         for _ in range(GAMES_PER_OPP):
             pl1 = AIAgent3("GA-Candidate", continuous_learning=False, opponent_modeling=False)
             pl1.meta_weights.update(weights)
-            opp = Opp("Opponent")
+            
+            # Disable logging for AIAgent3 opponents as well
+            if Opp == AIAgent3:
+                opp = Opp("Opponent", continuous_learning=False, opponent_modeling=False)
+                # Ensure opponent's logger is also disabled
+                if hasattr(opp, 'logger'):
+                    opp.logger.setLevel(logging.CRITICAL)
+            else:
+                opp = Opp("Opponent")
+            
             g   = BattleshipGame(pl1, opp)
             g.play()
             games += 1
@@ -72,9 +84,9 @@ def _evaluate(args):
             gc.collect()
 
     win_rate     = wins / games
-    avg_moves    = moves / wins if wins else 200
-    fitness      = 100 * win_rate - avg_moves   # higher is better
-    return fitness, weights
+    avg_moves    = moves /(2*wins) if wins else 200 
+    fitness      = 100 - avg_moves   # higher is better 
+    return fitness, weights, win_rate, avg_moves
 
 # -----------------------------------------------------------------------------
 # Genetic operators
@@ -102,29 +114,56 @@ def crossover(a, b):
 # Main GA loop
 # -----------------------------------------------------------------------------
 
-def evolve(pop_size: int, gens: int, cpus: int):
+def evolve(pop_size: int, gens: int, cpus: int, return_stats: bool = False):
+    """
+    Run GA evolution.
+    
+    Args:
+        pop_size: Population size
+        gens: Number of generations
+        cpus: Number of CPU workers
+        return_stats: If True, return detailed stats of best chromosome
+        
+    Returns:
+        If return_stats=True: dict with weights, win_rate, avg_moves, fitness
+        Otherwise: None
+    """
     # --- initialise population ---------------------------------------------
     population = [random_chrom() for _ in range(pop_size)]
 
     # multiprocessing pool – workers die after 30 tasks to recycle mem
     ctx  = mp.get_context("spawn")
     pool = ctx.Pool(processes=cpus, maxtasksperchild=30)
+    
+    best_stats = None
 
     for gen in range(1, gens + 1):
         # Evaluate population ------------------------------------------------
         jobs = [( {k: getattr(ch, k) for k in META_KEYS}, random.randrange(1<<30) )
                 for ch in population]
         results = []
-        for fitness, weights in tqdm(pool.imap_unordered(_evaluate, jobs),
+        for fitness, weights, win_rate, avg_moves in tqdm(pool.imap_unordered(_evaluate, jobs),
                                      total=pop_size, ncols=80,
                                      desc=f"Gen {gen}/{gens}"):
-            results.append(Chrom(**weights, fitness=fitness))
+            results.append((Chrom(**weights, fitness=fitness), win_rate, avg_moves))
 
         # Sort by fitness (desc) --------------------------------------------
-        results.sort(key=lambda c: c.fitness, reverse=True)
-        best = results[0]
-        print(f"🧬  Gen {gen}   best fitness = {best.fitness:.2f}   weights = "
-              f"{ {k: getattr(best,k) for k in META_KEYS} }")
+        results.sort(key=lambda c: c[0].fitness, reverse=True)
+        best = results[0][0]
+        best_win_rate = results[0][1]
+        best_avg_moves = results[0][2]
+        
+        print(f"🧬  Gen {gen}   best fitness = {best.fitness:.2f}   win_rate = {best_win_rate:.3f}   avg_moves = {best_avg_moves:.2f}")
+        print(f"   weights = { {k: getattr(best,k) for k in META_KEYS} }")
+        
+        # Store best stats for final generation
+        if gen == gens:
+            best_stats = {
+                'weights': {k: getattr(best, k) for k in META_KEYS},
+                'win_rate': best_win_rate,
+                'avg_moves': best_avg_moves,
+                'fitness': best.fitness
+            }
 
         # Save checkpoint ----------------------------------------------------
         if gen % SAVE_EVERY == 0 or gen == gens:
@@ -136,10 +175,10 @@ def evolve(pop_size: int, gens: int, cpus: int):
 
         # Create next generation --------------------------------------------
         elite_cnt = max(1, int(ELITISM_FRACTION * pop_size))
-        next_pop  = results[:elite_cnt]                       # carry elites
+        next_pop  = [r[0] for r in results[:elite_cnt]]       # carry elites
         # remainder via tournament selection + variation
         while len(next_pop) < pop_size:
-            pa, pb = random.sample(results[:pop_size//2], 2)
+            pa, pb = random.sample([r[0] for r in results[:pop_size//2]], 2)
             child_w = mutate(crossover({k:getattr(pa,k) for k in META_KEYS},
                                        {k:getattr(pb,k) for k in META_KEYS}))
             next_pop.append(Chrom(**child_w, fitness=None))
@@ -148,6 +187,10 @@ def evolve(pop_size: int, gens: int, cpus: int):
 
     pool.close(); pool.join()
     print("✔ GA optimisation finished.")
+    
+    if return_stats:
+        return best_stats
+    return None
 
 # -----------------------------------------------------------------------------
 # CLI entry‑point

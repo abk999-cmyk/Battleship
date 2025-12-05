@@ -1,0 +1,17 @@
+{
+  "run_number": 7,
+  "seed": 1344,
+  "pop_size": 20,
+  "generations": 50,
+  "elapsed_time_seconds": 7155.147921800613,
+  "timestamp": "2025-11-22T08:46:18.780122",
+  "weights": {
+    "density": 0.27338438306665813,
+    "neural": 0.15368220282508943,
+    "montecarlo": 0.8675642688591395,
+    "information_gain": 0.0
+  },
+  "win_rate": 0.8,
+  "avg_moves": 71.5,
+  "fitness": 8.5
+}
